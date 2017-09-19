@@ -1198,6 +1198,58 @@ if(typeof MathJax == 'undefined' ) {
 })(jQuery, window, jQuery.Espy);
 
 
+//window.onload = function() {
+window.addEventListener("load",function(event) {
+  $(".aside-like").click(function(){
+     $(this).toggleClass("front");
+    });
+/* if you click a knowl in an aside, the 'front' stays the
+   same because it toggles twice.  A more elegant solution is welcome */
+  $(".aside-like a").click(function(){
+     $(this).closest(".aside-like").toggleClass("front");
+    });
+
+/* temporary, so that aside-like knowls open in the body of the document */
+/* later the addafter will be inserted by PTX? */
+  $("a").each(function() {
+    if($(this).parents('.aside-like').length) {
+        $(this).attr("addafter", "#" + $(this).closest('.aside-like').attr('id') );
+        $(this).closest('.aside-like').attr("tabindex", "0");
+    }
+});
+},
+false);
+/*
+};
+
+window.onload = function()
+{
+*/
+window.addEventListener("load",function(event) {
+    document.onkeyup = function(event)
+    {                   
+        var e = (!event) ? window.event : event;
+        switch(e.keyCode)
+        {                       
+            case 13:  //CR 
+                 if($(document.activeElement).hasClass("aside-like")) {
+                    $(document.activeElement).toggleClass("front")
+                 }
+            case 27: //esc
+                if(knowl_focus_stack.length > 0 ) {
+                   most_recently_opened = knowl_focus_stack.pop();
+                   knowl_focus_stack_uid.pop();
+                   most_recently_opened.focus();
+                } else {
+                   console.log("no open knowls being tracked");
+                   break;
+                }
+            break;                      
+        }                   
+};              
+},
+false);      
+
 /*
 window.onload = function()
 {
