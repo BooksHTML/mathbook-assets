@@ -1,3 +1,33 @@
+
+/* this needs to be first, because we want any background to
+   over-rule this.
+   this is for the "layering" of asides and other
+*/
+
+.mathbook-content p {
+    background-color: #fff; 
+/*    box-shadow: 0 0 0.5em 0.2em #fff;
+    put this back after the major CSS refactor
+*/
+}
+.mathbook-content .heading, .mathbook-content pre {
+    background-color: #fff; 
+}
+
+/* un-do the above for environments with colored background */
+.mathbook-content .assemblage-like p,
+.mathbook-content .assemblage-like .heading,
+.mathbook-content .assemblage-like pre,
+.mathbook-content .aside-like p,
+.mathbook-content .aside-like .heading,
+.mathbook-content .aside-like pre,
+.mathbook-content .knowl-output p, 
+.mathbook-content .knowl-output .heading,
+.mathbook-content .knowl-output pre {
+    background-color: inherit; 
+    box-shadow: none;
+}
+
 body > a.assistive {
 	padding:6px;
 	position: absolute;
@@ -324,11 +354,11 @@ h2:last-child {
     content: ".\2002";
 }
 
-.mathbook-content .paragraphs p h5.heading {
+.mathbook-content .paragraphs p .heading {
     display: inline;
 }
 
-.mathbook-content section .paragraphs h5.heading {
+.mathbook-content section .paragraphs .heading {
     margin-top: 0;
 }
 
@@ -407,7 +437,7 @@ h2:last-child {
 }
 
 
-.mathbook-content .sidebyside .sbsrow h5.sbsheader {
+.mathbook-content .sidebyside .sbsrow .sbsheader {
     margin-top: 0;
 }
 
@@ -724,7 +754,7 @@ table tr td {
     margin-top: 1em;
 }
 
-.mathbook-content article h5.heading + dl {
+.mathbook-content article .heading + dl {
     margin-top: 1em;
 }
 
@@ -744,7 +774,7 @@ table tr td {
     margin-top: 0;
 }
 
-.mathbook-content .hidden-knowl-wrapper .hiddenproof h5 {
+.mathbook-content .hidden-knowl-wrapper .hiddenproof  {
     margin-top: 0;
 }
 
@@ -827,10 +857,30 @@ table tr td {
 
 .mathbook-content section header .heading a.permalink {
     opacity: 0.1;
-    color: #d00;
     font-size: 70%;
+    color: #d00;
     text-decoration: none;
+    display: inline-block;
 }
+
+.mathbook-content section header .heading {
+  display: inline-block;
+}
+.mathbook-content section header .heading + a.permalink {
+    opacity: 0.2;
+    color: #d00;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 0.5em;
+}
+.mathbook-content section.subsection header .heading + a.permalink {
+    font-size: 90%;
+}
+.mathbook-content section.subsubsection header .heading + a.permalink {
+    font-size: 80%;
+}
+
 
 /*
 .mathbook-content .heading a.permalink:after {
@@ -988,10 +1038,10 @@ table tr td {
 }
 */
 
-.mathbook-content .hidden-knowl-wrapper h5 {
+.mathbook-content .hidden-knowl-wrapper .heading {
     display: inline;
 }
-.mathbook-content h5 + .hidden-knowl-wrapper {
+.mathbook-content .heading + .hidden-knowl-wrapper {
     display: inline;
 }
 .mathbook-content article .hidden-knowl-wrapper {
@@ -1080,6 +1130,8 @@ table tr td {
   font-weight: bold;
 }
 
+/* the "pink flash" when navigating to a target
+*/
 :target {
     -webkit-animation: target-fade 10s 1;
     -moz-animation: target-fade 10s 1;
@@ -1087,11 +1139,13 @@ table tr td {
 
 @-webkit-keyframes target-fade {
     0% { background-color: rgba(120,0,120,.3); }
-    100% { background-color: inherit; }
+    100% { background-color: inherit;
+           opacity: 1; }
 }
 @-moz-keyframes target-fade {
     0% { background-color: rgba(120,0,120,.3); }
-    100% { background-color: inherit; }
+    100% { background-color: inherit;
+           opacity: 1; }
 }
 
 /*
@@ -1212,7 +1266,7 @@ table tr td {
 }
 */
 
-.mathbook-content .knowl .definition-like:last-child, .mathbook-content .knowl .theorem-like:last-child, .mathbook-content .knowl .remark-like:last-child, .mathbook-content .knowl .example-like:last-child, .mathbook-content .knowl .exercise-like:last-child, .mathbook-content .knowl .aside-like:last-child, .mathbook-content .knowl .objectives:last-child {
+.mathbook-content .knowl .definition-like:last-child, .mathbook-content .knowl .theorem-like:last-child, .mathbook-content .knowl .remark-like:last-child, .mathbook-content .knowl .example-like:last-child, .mathbook-content .knowl .exercise-like:last-child, .mathbook-content .knowl .objectives:last-child {
     margin-bottom: 0.3em;
 }
 
@@ -1334,9 +1388,11 @@ a.mjx-svg-href  {
     font-size: inherit;
 }
 
-.mathbook-content .exercisegroup article.exercise-like {
+/* http://spot.pcc.edu/math/APEXCalculus/sec_interp_deriv.html */
+.mathbook-content .exercisegroup > article.exercise-like,
+.mathbook-content .exercisegroup-exercises > article.exercise-like {
     margin-left: 2em;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.75em;
 }
 .mathbook-content .exercisegroup article.exercise-like + .hidden-knowl-wrapper {
     margin-left: 4em;
@@ -1344,12 +1400,78 @@ a.mjx-svg-href  {
     margin-bottom: 1em;
 }
 
+/* make it look like a list, and have entra indenting when already more indented */
+.mathbook-content .exercise-like .introduction + .hidden-knowl-wrapper,
+.mathbook-content .exercise-like .conclusion {
+    margin-left: 1.0em;
+}
+.mathbook-content .exercisegroup .exercise-like .introduction + .hidden-knowl-wrapper,
+.mathbook-content .exercisegroup .exercise-like .conclusion {
+    margin-left: 1.5em;
+}
+
 .mathbook-content .exercisegroup article.exercise-like:not(:first-child) {
     margin-top: 0em;
 }
 
-.mathbook-content .exercisegroup article.conclusion {
+.mathbook-content .exercisegroup > .conclusion {
     margin-left: 1.5em;
+}
+
+.mathbook-content article.exercise-like .hint [knowl]{
+    font-weight: lighter;
+}
+
+.mathbook-content .exercise-like .hint {
+    display: block;
+    margin-top: -0.75em;
+}
+
+.mathbook-content .exercise-like .introduction {
+    display: inline;
+}
+.mathbook-content .exercise-like .introduction .heading {
+    display: inline;
+}
+.mathbook-content .exercise-like .introduction p {
+    display: inline;
+}
+.mathbook-content .exercise-like .introduction::after {
+    content: "";
+    display: block;
+    margin-bottom: 0.25em;
+}
+.mathbook-content .exercise-like .conclusion::before {
+    content: "";
+    display: block;
+    margin-top: 0.25em;
+}
+
+
+/*
+.mathbook-content .example-like .hint {
+}
+*/
+
+.example-like, .exercise-like {
+  margin: 1.25em 0;
+}
+
+/* if hints and solutions are in .posterior, then
+ * some of the above styling does not apply */
+
+.mathbook-content article.exercise-like + .posterior {
+    margin-top: -0.75em;
+}
+
+
+.mathbook-content article.example-like .hint {
+    display: block;
+    margin-top: -0.75em;
+}
+
+.mathbook-content article.example-like .hint [knowl]{
+    font-weight: lighter;
 }
 
 
@@ -1393,7 +1515,7 @@ a.mjx-svg-href  {
     font-family: "Inconsolata", monospace;
 }
 
-.main .mathbook-content section  h5.heading {
+.main .mathbook-content section  article .heading {
     line-height: 1.125em;
 }
 
@@ -1422,6 +1544,7 @@ a.mjx-svg-href  {
 }
 */
 .mathbook-content .assemblage-like {
+    margin-top: 1ex;
     margin-bottom: 2ex;
 }
 /* obsolete once we refactor paragraph spacing */
@@ -1434,20 +1557,30 @@ a.mjx-svg-href  {
     font-style: oblique;
 }
 
-.mathbook-content .definition-like > h5.heading .type:last-child:after, .mathbook-content .theorem-like > h5.heading .type:last-child:after, .mathbook-content .remark-like > h5.heading .type:last-child:after, .mathbook-content .example-like > h5.heading .type:last-child:after, .mathbook-content .exercise-like > h5.heading .type:last-child:after, .mathbook-content .aside-like > h5.heading .type:last-child:after, .mathbook-content .definition-like > h5.heading .codenumber:last-child:after, .mathbook-content .theorem-like > h5.heading .codenumber:last-child:after, .mathbook-content .remark-like > h5.heading .codenumber:last-child:after, .mathbook-content .example-like > h5.heading .codenumber:last-child:after, .mathbook-content .exercise-like > h5.heading .codenumber:last-child:after, .mathbook-content .aside-like > h5.heading .codenumber:last-child:after, .mathbook-content .definition-like > h5.heading .title:last-child:after, .mathbook-content .theorem-like > h5.heading .title:last-child:after, .mathbook-content .remark-like > h5.heading .title:last-child:after, .mathbook-content .example-like > h5.heading .title:last-child:after, .mathbook-content .exercise-like > h5.heading .title:last-child:after, .mathbook-content .aside-like > h5.heading .title:last-child:after, .mathbook-content .definition-like > header > h5.heading .type:last-child:after, .mathbook-content .theorem-like > header > h5.heading .type:last-child:after, .mathbook-content .remark-like > header > h5.heading .type:last-child:after, .mathbook-content .example-like > header > h5.heading .type:last-child:after, .mathbook-content .exercise-like > header > h5.heading .type:last-child:after, .mathbook-content .aside-like > header > h5.heading .type:last-child:after, .mathbook-content .definition-like > header > h5.heading .codenumber:last-child:after, .mathbook-content .theorem-like > header > h5.heading .codenumber:last-child:after, .mathbook-content .remark-like > header > h5.heading .codenumber:last-child:after, .mathbook-content .example-like > header > h5.heading .codenumber:last-child:after, .mathbook-content .exercise-like > header > h5.heading .codenumber:last-child:after, .mathbook-content .aside-like > header > h5.heading .codenumber:last-child:after, .mathbook-content .definition-like > header > h5.heading .title:last-child:after, .mathbook-content .theorem-like > header > h5.heading .title:last-child:after, .mathbook-content .remark-like > header > h5.heading .title:last-child:after, .mathbook-content .example-like > header > h5.heading .title:last-child:after, .mathbook-content .exercise-like > header > h5.heading .title:last-child:after, .mathbook-content .aside-like > header > h5.heading .title:last-child:after {  
+.mathbook-content .definition-like > .heading .type:last-child:after, .mathbook-content .theorem-like > .heading .type:last-child:after, .mathbook-content .remark-like > .heading .type:last-child:after, .mathbook-content .example-like > .heading .type:last-child:after, .mathbook-content .exercise-like > .heading .type:last-child:after, .mathbook-content .definition-like > .heading .codenumber:last-child:after, .mathbook-content .theorem-like > .heading .codenumber:last-child:after, .mathbook-content .remark-like > .heading .codenumber:last-child:after, .mathbook-content .example-like > .heading .codenumber:last-child:after, .mathbook-content .exercise-like > .heading .codenumber:last-child:after, .mathbook-content .definition-like > .heading .title:last-child:after, .mathbook-content .theorem-like > .heading .title:last-child:after, .mathbook-content .remark-like > .heading .title:last-child:after, .mathbook-content .example-like > .heading .title:last-child:after, .mathbook-content .exercise-like > .heading .title:last-child:after, .mathbook-content .definition-like > header > .heading .type:last-child:after, .mathbook-content .theorem-like > header > .heading .type:last-child:after, .mathbook-content .remark-like > header > .heading .type:last-child:after, .mathbook-content .example-like > header > .heading .type:last-child:after, .mathbook-content .exercise-like > header > .heading .type:last-child:after, .mathbook-content .definition-like > header > .heading .codenumber:last-child:after, .mathbook-content .theorem-like > header > .heading .codenumber:last-child:after, .mathbook-content .remark-like > header > .heading .codenumber:last-child:after, .mathbook-content .example-like > header > .heading .codenumber:last-child:after, .mathbook-content .exercise-like > header > .heading .codenumber:last-child:after, .mathbook-content .definition-like > header > .heading .title:last-child:after, .mathbook-content .theorem-like > header > .heading .title:last-child:after, .mathbook-content .remark-like > header > .heading .title:last-child:after, .mathbook-content .example-like > header > .heading .title:last-child:after, .mathbook-content .exercise-like > header > .heading .title:last-child:after {  
     content: ".\2009 ";
 }
 
-.mathbook-content .aside-like > h5.heading .title:empty:after {
+.mathbook-content .aside-like > .heading .type:last-child:after,
+.mathbook-content .aside-like > .heading .codenumber:last-child:after,
+.mathbook-content .aside-like > .heading .title:last-child:after,
+.mathbook-content .aside-like > header > .heading .type:last-child:after,
+.mathbook-content .aside-like > header > .heading .codenumber:last-child:after,
+.mathbook-content .aside-like > header > .heading .title:last-child:after {
+    content: ":\2009 ";
+}
+
+.mathbook-content .aside-like > .heading .title:empty:after {
     content: "";
 }
 
-.mathbook-content a  .definition-like > h5.heading .type:last-child:after, .mathbook-content a  .theorem-like > h5.heading .type:last-child:after, .mathbook-content a  .remark-like > h5.heading .type:last-child:after, .mathbook-content a  .example-like > h5.heading .type:last-child:after, .mathbook-content a  .exercise-like > h5.heading .type:last-child:after, .mathbook-content a  .aside-like > h5.heading .type:last-child:after, .mathbook-content a  .definition-like > h5.heading .codenumber:last-child:after, .mathbook-content a  .theorem-like > h5.heading .codenumber:last-child:after, .mathbook-content a  .remark-like > h5.heading .codenumber:last-child:after, .mathbook-content a  .example-like > h5.heading .codenumber:last-child:after, .mathbook-content a  .exercise-like > h5.heading .codenumber:last-child:after, .mathbook-content a  .aside-like > h5.heading .codenumber:last-child:after, .mathbook-content a  .definition-like > h5.heading .title:last-child:after, .mathbook-content a  .theorem-like > h5.heading .title:last-child:after, .mathbook-content a  .remark-like > h5.heading .title:last-child:after, .mathbook-content a  .example-like > h5.heading .title:last-child:after, .mathbook-content a  .exercise-like > h5.heading .title:last-child:after, .mathbook-content a  .aside-like > h5.heading .title:last-child:after, .mathbook-content a  .definition-like > header > h5.heading .type:last-child:after, .mathbook-content a  .theorem-like > header > h5.heading .type:last-child:after, .mathbook-content a  .remark-like > header > h5.heading .type:last-child:after, .mathbook-content a  .example-like > header > h5.heading .type:last-child:after, .mathbook-content a  .exercise-like > header > h5.heading .type:last-child:after, .mathbook-content a  .aside-like > header > h5.heading .type:last-child:after, .mathbook-content a  .definition-like > header > h5.heading .codenumber:last-child:after, .mathbook-content a  .theorem-like > header > h5.heading .codenumber:last-child:after, .mathbook-content a  .remark-like > header > h5.heading .codenumber:last-child:after, .mathbook-content a  .example-like > header > h5.heading .codenumber:last-child:after, .mathbook-content a  .exercise-like > header > h5.heading .codenumber:last-child:after, .mathbook-content a  .aside-like > header > h5.heading .codenumber:last-child:after, .mathbook-content a  .definition-like > header > h5.heading .title:last-child:after, .mathbook-content a  .theorem-like > header > h5.heading .title:last-child:after, .mathbook-content a  .remark-like > header > h5.heading .title:last-child:after, .mathbook-content a  .example-like > header > h5.heading .title:last-child:after, .mathbook-content a  .exercise-like > header > h5.heading .title:last-child:after, .mathbook-content a  .aside-like > header > h5.heading .title:last-child:after {  
+/* need sample use case for these */
+.mathbook-content a  .definition-like > .heading .type:last-child:after, .mathbook-content a  .theorem-like > .heading .type:last-child:after, .mathbook-content a  .remark-like > .heading .type:last-child:after, .mathbook-content a  .example-like > .heading .type:last-child:after, .mathbook-content a  .exercise-like > .heading .type:last-child:after, .mathbook-content a  .definition-like > .heading .codenumber:last-child:after, .mathbook-content a  .theorem-like > .heading .codenumber:last-child:after, .mathbook-content a  .remark-like > .heading .codenumber:last-child:after, .mathbook-content a  .example-like > .heading .codenumber:last-child:after, .mathbook-content a  .exercise-like > .heading .codenumber:last-child:after, .mathbook-content a  .definition-like > .heading .title:last-child:after, .mathbook-content a  .theorem-like > .heading .title:last-child:after, .mathbook-content a  .remark-like > .heading .title:last-child:after, .mathbook-content a  .example-like > .heading .title:last-child:after, .mathbook-content a  .exercise-like > .heading .title:last-child:after, .mathbook-content a  .definition-like > header > .heading .type:last-child:after, .mathbook-content a  .theorem-like > header > .heading .type:last-child:after, .mathbook-content a  .remark-like > header > .heading .type:last-child:after, .mathbook-content a  .example-like > header > .heading .type:last-child:after, .mathbook-content a  .exercise-like > header > .heading .type:last-child:after, .mathbook-content a  .definition-like > header > .heading .codenumber:last-child:after, .mathbook-content a  .theorem-like > header > .heading .codenumber:last-child:after, .mathbook-content a  .remark-like > header > .heading .codenumber:last-child:after, .mathbook-content a  .example-like > header > .heading .codenumber:last-child:after, .mathbook-content a  .exercise-like > header > .heading .codenumber:last-child:after, .mathbook-content a  .definition-like > header > .heading .title:last-child:after, .mathbook-content a  .theorem-like > header > .heading .title:last-child:after, .mathbook-content a  .remark-like > header > .heading .title:last-child:after, .mathbook-content a  .example-like > header > .heading .title:last-child:after, .mathbook-content a  .exercise-like > header > .heading .title:last-child:after, {  
     content: "";
 }
 
 /* FOr exercises, etc, hidden in knowls */
-.mathbook-content a  .definition-like > h5.heading .codenumber:not(:empty)::after, .mathbook-content a  .theorem-like > h5.heading .codenumber:not(:empty)::after, .mathbook-content a  .remark-like > h5.heading .codenumber:not(:empty)::after, .mathbook-content a  .example-like > h5.heading .codenumber:not(:empty)::after, .mathbook-content a  .exercise-like > h5.heading .codenumber:not(:empty)::after, .mathbook-content a  .aside-like > h5.heading .codenumber:not(:empty)::after, .mathbook-content a  .theorem-like > header > h5.heading .codenumber:not(:empty)::after, .mathbook-content a  .remark-like > header > h5.heading .codenumber:not(:empty)::after, .mathbook-content a  .example-like > header > h5.heading .codenumber:not(:empty)::after, .mathbook-content a  .exercise-like > header > h5.heading .codenumber:not(:empty)::after, .mathbook-content a  .aside-like > header > h5.heading .codenumber:not(:empty)::after {
+.mathbook-content a  .definition-like > .heading .codenumber:not(:empty)::after, .mathbook-content a  .theorem-like > .heading .codenumber:not(:empty)::after, .mathbook-content a  .remark-like > .heading .codenumber:not(:empty)::after, .mathbook-content a  .example-like > .heading .codenumber:not(:empty)::after, .mathbook-content a  .exercise-like > .heading .codenumber:not(:empty)::after, .mathbook-content a  .theorem-like > header > .heading .codenumber:not(:empty)::after, .mathbook-content a  .remark-like > header > .heading .codenumber:not(:empty)::after, .mathbook-content a  .example-like > header > .heading .codenumber:not(:empty)::after, .mathbook-content a  .exercise-like > header > .heading .codenumber:not(:empty)::after { 
     content: ": \2009";
 }
 
@@ -1455,7 +1588,7 @@ a.mjx-svg-href  {
   content: "";
 }
 
-.mathbook-content .exercise-like > h5.heading .codenumber:not(:empty):after {
+.mathbook-content .exercise-like > .heading .codenumber:not(:empty):after {
     content: ".\2009 ";
 }
 
@@ -1463,7 +1596,7 @@ a.mjx-svg-href  {
    which gets an ". " :after, so there was a double dot.  If this
    needs to be put back, then also fix the double dot problem
    http://sl2x.aimath.org/book/aafmt/section9-3.html  (at end)
-.mathbook-content .aside-like > h5.heading:not(:empty):after {
+.mathbook-content .aside-like > .heading:not(:empty):after {
     content: ".\2009 ";
 }
 */
@@ -1807,8 +1940,15 @@ border-bottom: 1px solid #aaa;
 
 /* Since there can be p which are nearby but not siblings,
    let's put background and (but not box shadow) on everything */
+
+/* see start of file
+.mathbook-content p, .mathbook-content .heading {
+    background: #fff;
+}
+*/
+
 /*
-   NO LONGER NEEDED because non-front asides are limited in height
+  OLD VERSION: see new version above
 
 .mathbook-content .aside-like ~ *:not(.aside-like) p, .mathbook-content .aside-like ~ *:not(.aside-like) .heading {
     background: #fff;
@@ -1846,6 +1986,7 @@ border-bottom: 1px solid #aaa;
 .mathbook-content .aside-like {
   margin-bottom: 5px;
   background-color: #f5faff;
+  box-shadow: 0 0 1.0em 0.2em #fff inset;
 }
 .mathbook-content .aside-like:first-child {
     margin-top: -2.25em;
@@ -1864,6 +2005,7 @@ border-bottom: 1px solid #aaa;
   width    : 550px;
   height   : 6em;
 }
+/* example of where the following is needed? */
 .mathbook-content .aside-like * {
     background-color: #f5faff !important;
 }
@@ -1879,6 +2021,7 @@ border-bottom: 1px solid #aaa;
   color: inherit;
 /*  width: 550px; */
   font-size: 100%;
+  box-shadow: none;
 }
 .mathbook-content .aside-like.front:after, .mathbook-content .example-like .aside-like.front:after {
     background-image: none;
@@ -1917,11 +2060,24 @@ border-bottom: 1px solid #aaa;
 
 .mathbook-content .aside-like + *{
     margin-top: 3em !important;
+    box-shadow: 0 0 0.5em 0.2em #fff;
+    margin-right: 3em;
 }
+
 /* for + ul p see http://physics.thomasmore.edu/ConnectedPhysics/ss-NII.html */
+/*  subsumed by general background at start
 .mathbook-content .aside-like + p, .mathbook-content .aside-like + ul p, .mathbook-content .aside-like + ol p{
     background: #fff;
     box-shadow: 2em 0 1em 0.0em #fff;
+}
+*/
+
+/* on sufficiently large screens, there is enough of a margin to see part of the aside */
+
+@media screen and (min-width: 943px) {
+  .mathbook-content .aside-like + * {
+      margin-right: 0;
+  }
 }
 
 /* on a wide screen, asides should appear in the right margin */
@@ -1942,11 +2098,13 @@ border-bottom: 1px solid #aaa;
       margin-left: 654px;  /* because .example-like has 6px of padding */
   }
 
-  .mathbook-content .aside-like + *, .mathbook-content .aside-like ~ p, .mathbook-content .aside-like ~ *:not(.aside-like) p{
+  .mathbook-content .aside-like + * {
       margin-top: 1.25em !important;
   /*    background: none;  */
       box-shadow: none;
+      margin-right: 0;
   }
+
   .mathbook-content .aside-like.front:after, .mathbook-content .example-like .aside-like.front:after {
     background-image: none;
   }
@@ -1962,31 +2120,49 @@ border-bottom: 1px solid #aaa;
 }
 }
 
-.mathbook-content .aside-like:hover:after {
+/* on a narrow screen, collapsed asides should only be one line tall */
+/* was too hard to see/poke
+@media screen and (max-width: 480px) {
+.mathbook-content .aside-like {
+    margin-top: -1.25em;
+}
+.mathbook-content .example-like .aside-like {
+    margin-top: -1em;
+  }
+.mathbook-content .aside-like + *{
+    margin-top: 1.5em !important;
+}
+.mathbook-content .aside-like + article, .mathbook-content .aside-like + ul, .mathbook-content .aside-like + ol {
+    margin-top: 2.5em !important;
+}
+}
+*/
+
+.mathbook-content .aside-like:hover:after, .mathbook-content .aside-like:focus:after {
     top: 3em;
     height: auto;
-    background-image : linear-gradient(to bottom,
-                    rgba(255,255,255, 0),
-                    rgba(255,255,255, 0.8));
+    background-image : none;
 }
-.mathbook-content .aside-like.front:hover:after {
+/* redundant
+.mathbook-content .aside-like.front:hover:after, .mathbook-content .aside-like.front:focus:after {
     background-image: none;
 }
+*/
 
-.mathbook-content .aside-like:hover {
+.mathbook-content .aside-like:hover, .mathbook-content .aside-like:focus {
     color: inherit;
     padding: 0 8px;
     border: 2px solid #dcebfa;
     height: auto;
     max-height: none;
 }
-.mathbook-content .aside-like.front:hover {
+.mathbook-content .aside-like.front:hover, .mathbook-content .aside-like.front:focus {
     padding: 2px 10px;
 }
 
 /* figure out a better way to handle asides in content that has a wide left margin */
+/* see http://pretext.jahrme.com/aside-in-knowl/section-1.html */
 .mathbook-content section dl dd .aside-like {
-    position: relative !important;
     margin-top: 0 !important;
     margin-left: 100px !important;
 }
@@ -2054,62 +2230,6 @@ a > article.example-like:after {
   border: none;
 }
 
-
-/*
-article.exercise-like span.hint {
-}
-*/
-
-.mathbook-content article.exercise-like .hint [knowl]{
-    font-weight: lighter;
-}
-
-.mathbook-content .exercise-like .hint {
-    display: block;
-    margin-top: -0.75em;
-}
-
-.mathbook-content .exercise-like .introduction {
-    display: inline;
-}
-.mathbook-content .exercise-like .introduction .heading {
-    display: inline;
-}
-.mathbook-content .exercise-like .introduction p {
-    display: inline;
-}
-.mathbook-content .exercise-like .introduction::after {
-    content: "";
-    display: block;
-    margin-bottom: 0.5em;
-}
-
-/*
-.mathbook-content .example-like .hint {
-}
-*/
-
-.example-like, .exercise-like {
-  margin: 1.25em 0;
-}
-
-/* if hints and solutions are in .posterior, then
- * some of the above styling does not apply */
-
-.mathbook-content article.exercise-like + .posterior {
-    margin-top: -0.75em;
-}
-
-
-.mathbook-content article.example-like .hint {
-    display: block;
-    margin-top: -0.75em;
-}
-
-.mathbook-content article.example-like .hint [knowl]{
-    font-weight: lighter;
-}
-
 /* http://spot.pcc.edu/math/APEXCalculus/sec_prod_quot_rules.html
  * solution to Example 2.4.14
  */
@@ -2167,9 +2287,6 @@ body.sidebar-left-closed .searchwrapper {
 }
 
 body.sidebar-left-open .searchwrapper {
-    max-width: 900px;
-    position: absolute;
-    right: 0;
     top: 74px;
 }
 
@@ -2177,9 +2294,6 @@ body.sidebar-left-open .searchwrapper {
  *  * */
 
 body.sidebar-left-closed .searchwrapper {
-    max-width: 900px;
-    position: absolute;
-    right: 0;
     top: 74px;
     margin-bottom: -2px;
 }
@@ -2187,9 +2301,6 @@ body.sidebar-left-closed .searchwrapper {
 
 @media screen and (max-width: 800px) {
 body.sidebar-left-closed .searchwrapper {
-    max-width: 900px;
-    position: absolute;
-    right: 0;
     top: 129px;
 }
 }
