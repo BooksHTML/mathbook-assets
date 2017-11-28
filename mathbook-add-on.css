@@ -1,4 +1,129 @@
 
+/* CSS defult values:
+https://www.w3schools.com/cssref/css_default_values.asp
+*/
+
+/* the default margin for pre is "1em 0", so we over-ride
+so that we can set our own later */
+pre {
+    margin: 0;
+}
+
+/* p and other block-level elements should have space at the top, and not the bottom */
+.mathbook-content p {
+    margin-top: 1.25em;
+    margin-bottom: 0;
+}
+.mathbook-content ol, .mathbook-content ul {
+    margin-bottom: 0;
+}
+
+.mathbook-content section > article, .mathbook-content .introduction + article {
+    margin-top: 1.25em;
+}
+.mathbook-content .sagecell {
+    margin-top: 1.25em;
+}
+
+.mathbook-content pre {
+    margin-top: 1.25em;
+}
+
+.mathbook-content .conclusion {
+    margin-top: 1em;
+}
+
+.mathbook-content ol, .mathbook-content ul {
+    margin-top: 0.75em;
+}
+.mathbook-content dl {
+    margin-top: 1em;
+}
+.mathbook-content li {
+    margin-top: 0.5em;
+}
+.mathbook-content li > p:first-child {
+    margin-top: 0;
+}
+.mathbook-content article p:first-child {
+    margin-top: 0;
+}
+
+.mathbook-content ol ol, .mathbook-content ol ul,  .mathbook-content ul ol, .mathbook-content ul ul {
+    margin-top: 0.5em;
+}
+
+.mathbook-content ol p + p, .mathbook-content ul p + p {
+    margin-top: 1em;
+}
+
+.mathbook-content dl dt, .mathbook-content dl dd {
+    margin-top: 1em;
+}
+
+.mathbook-content dl dt:first-of-type, .mathbook-content dl dd:first-of-type {
+    margin-top: 0;
+}
+
+.mathbook-content article > .heading + p {
+    margin-top: 0;
+}
+.mathbook-content section > .heading + p, .mathbook-content section > header + p {
+    margin-top: 0;
+}
+.mathbook-content section > .heading + article, .mathbook-content section > header + article {
+    margin-top: 0;
+}
+
+.mathbook-content a > .heading { display: inline;}
+
+.mathbook-content section .heading,
+.mathbook-content article .heading {
+    font-family: "PT Serif", "Times New Roman", Times, serif;
+    font-weight: 700;
+}
+.mathbook-content article .heading {
+    font-size: 1.125em;
+}
+
+.mathbook-content section > .heading > .type + .codenumber::before,
+.mathbook-content article > .heading > .type + .codenumber::before,
+.mathbook-content article > a > .heading > .type + .codenumber::before {
+    content: " ";
+}
+.mathbook-content section > .heading > .codenumber:not(:empty) + .title::before,
+.mathbook-content article > .heading > .codenumber:not(:empty) + .title::before,
+.mathbook-content article > a > .heading > .codenumber:not(:empty) + .title::before {
+    content: ": \2009";
+}
+
+.mathbook-content section > .heading > .title:not(:empty):last-child::after,
+.mathbook-content article > .heading > .title:not(:empty):last-child::after,
+.mathbook-content article > .heading > .title:not(:empty):last-child::after {
+    content: ".\2009";
+}
+/* when hidden in a knowl, don't need the space at the end */
+.mathbook-content article > a > .heading > .title:last-child::after {
+    content: ".";
+}
+
+/* knowlified proofs are in an article.hiddenproof */
+.mathbook-content .hiddenproof > .heading,   /* can't happen, because the a does the hiding? */
+.mathbook-content .hiddenproof > a > .heading {
+    font-style: italic;
+    font-weight: normal;
+}
+.mathbook-content .hiddenproof > .heading > .type::after,   /* can't happen, because the a does the hiding? */
+.mathbook-content .hiddenproof > a > .heading > .type::after {
+    content: "";
+}
+.mathbook-content .hiddenproof > .heading:after,   /* can't happen, because the a does the hiding? */
+.mathbook-content .hiddenproof > a > .heading:after {
+    content: ".";
+}
+
+
+
 /* this needs to be first, because we want any background to
    over-rule this.
    this is for the "layering" of asides and other
@@ -23,9 +148,32 @@
 .mathbook-content .aside-like pre,
 .mathbook-content .knowl-output p, 
 .mathbook-content .knowl-output .heading,
-.mathbook-content .knowl-output pre {
+.mathbook-content .knowl-output pre,
+.mathbook-content *[knowl] p,
+.mathbook-content *[knowl] .heading,
+.mathbook-content *[knowl] pre {
     background-color: inherit; 
     box-shadow: none;
+}
+
+/* end of layering colors */
+
+.mathbook-content section p.credit + p.credit {
+    margin-top: 0.25em;
+}
+.mathbook-content section p.credit > .title {
+    font-weight: 700;
+    margin-right: 0.5em;
+}
+.mathbook-content section p.credit > .title::after {
+    content: ": ";
+}
+
+.mathbook-content section p.copyright {
+    margin-top: 2.5em;
+}
+.mathbook-content section p.license {
+    margin-top: 2.5em;
 }
 
 body > a.assistive {
@@ -362,9 +510,11 @@ h2:last-child {
     margin-top: 0;
 }
 
+/*
 .mathbook-content section .paragraphs {
     margin-top: 0em;
 }
+*/
 
 .mathbook-content section .paragraphs + .paragraphs {
     margin-top: 3em;
@@ -463,6 +613,11 @@ h2:last-child {
 
 .mathbook-content .sidebyside {
     width: 100%;
+}
+
+/* see Ex 29 https://yoshiwarabooks.org/linear-functions.html  */
+.mathbook-content p + .sidebyside {
+    margin-top: 1em;
 }
 
 .mathbook-content .sbsrow {
@@ -734,46 +889,6 @@ table tr td {
     margin-bottom: 0;
 }
 
-/*  alternate method below seems more robust
-.mathbook-content ol li + li, .mathbook-content ul li + li {
-    margin-top: 0.5em;
-}
-*/
-.mathbook-content ol, .mathbook-content ul {
-    margin-top: -0.5em;
-}
-.mathbook-content ol li, .mathbook-content ul li {
-    margin-top: 0.5em;
-}
-
-.mathbook-content ol li ol, .mathbook-content ol li ul,  .mathbook-content ul li ol, .mathbook-content ul li ul {
-    margin-top: 0.5em;
-}
-
-.mathbook-content ol li p + p, .mathbook-content ul li p + p {
-    margin-top: 1em;
-}
-
-.mathbook-content article .heading + dl {
-    margin-top: 1em;
-}
-
-.mathbook-content dl dd p {
-    margin-bottom: 0.5em;
-}
-
-.mathbook-content dl dd *:last-child {
-    margin-bottom: 0;
-}
-
-.mathbook-content dl dt, .mathbook-content dl dd {
-    margin-top: 1em;
-}
-
-.mathbook-content dl dt:first-of-type, .mathbook-content dl dd:first-of-type {
-    margin-top: 0;
-}
-
 .mathbook-content .hidden-knowl-wrapper .hiddenproof  {
     margin-top: 0;
 }
@@ -983,11 +1098,23 @@ table tr td {
 .mathbook-content .indexknowl a {
     margin-left: 2em;
 }
-.mathbook-content .indexitem em, .mathbook-content .indexitem i,
-.mathbook-content .subindexitem em, .mathbook-content .subindexitem i,
-.mathbook-content .subsubindexitem em, .mathbook-content .subsubindexitem i {
+.mathbook-content .indexitem i,
+.mathbook-content .subindexitem i,
+.mathbook-content .subsubindexitem i {
     margin-left: 1em;
     margin-right: 0.25em;
+}
+
+/* temporary, to over-ride the misguided .indexitem i  above */
+.mathbook-content b i {
+    margin: 0 !important;
+}
+
+.mathbook-content .indexitem .see,
+.mathbook-content .subindexitem .see,
+.mathbook-content .subsubindexitem .see {
+    margin-left: 1em;
+    margin-right: 0.5em;
 }
 
 .mathbook-content .indexitem .indexknowl {
@@ -1044,9 +1171,14 @@ table tr td {
 .mathbook-content .heading + .hidden-knowl-wrapper {
     display: inline;
 }
-.mathbook-content article .hidden-knowl-wrapper {
+/*
+.mathbook-content article .hidden-knowl-wrapper:first-of-type {
     display: inline;
 }
+.mathbook-content article .hidden-knowl-wrapper {
+    margin-top: 1em;
+}
+*/
 
 .mathbook-content .cols2 .knowl-output, .mathbook-content .cols3 .knowl-output, .mathbook-content .cols4 .knowl-output, .mathbook-content .cols5 .knowl-output, .mathbook-content .cols5 .knowl-output {
     width: 100%;
@@ -1389,15 +1521,21 @@ a.mjx-svg-href  {
 }
 
 /* http://spot.pcc.edu/math/APEXCalculus/sec_interp_deriv.html */
-.mathbook-content .exercisegroup > article.exercise-like,
-.mathbook-content .exercisegroup-exercises > article.exercise-like {
+.mathbook-content .exercisegroup > article,
+.mathbook-content .exercisegroup-exercises > article {
     margin-left: 2em;
-    margin-bottom: 0.75em;
 }
-.mathbook-content .exercisegroup article.exercise-like + .hidden-knowl-wrapper {
+.mathbook-content .exercisegroup > .introduction,
+.mathbook-content .exercisegroup > .conclusion {
+    margin-left: 0;
+}
+
+.mathbook-content .exercisegroup article + .hidden-knowl-wrapper {
     margin-left: 4em;
+/*
     margin-top: 0;
     margin-bottom: 1em;
+*/
 }
 
 /* make it look like a list, and have entra indenting when already more indented */
@@ -1409,10 +1547,15 @@ a.mjx-svg-href  {
 .mathbook-content .exercisegroup .exercise-like .conclusion {
     margin-left: 1.5em;
 }
+.mathbook-content section > p + .hidden-knowl-wrapper {
+    margin-top: 1em;
+}
 
+/*
 .mathbook-content .exercisegroup article.exercise-like:not(:first-child) {
     margin-top: 0em;
 }
+*/
 
 .mathbook-content .exercisegroup > .conclusion {
     margin-left: 1.5em;
@@ -1422,10 +1565,12 @@ a.mjx-svg-href  {
     font-weight: lighter;
 }
 
+/*
 .mathbook-content .exercise-like .hint {
     display: block;
     margin-top: -0.75em;
 }
+*/
 
 .mathbook-content .exercise-like .introduction {
     display: inline;
@@ -1439,7 +1584,9 @@ a.mjx-svg-href  {
 .mathbook-content .exercise-like .introduction::after {
     content: "";
     display: block;
+/*
     margin-bottom: 0.25em;
+*/
 }
 .mathbook-content .exercise-like .conclusion::before {
     content: "";
@@ -1452,10 +1599,11 @@ a.mjx-svg-href  {
 .mathbook-content .example-like .hint {
 }
 */
-
+/*
 .example-like, .exercise-like {
   margin: 1.25em 0;
 }
+*/
 
 /* if hints and solutions are in .posterior, then
  * some of the above styling does not apply */
@@ -1543,10 +1691,12 @@ a.mjx-svg-href  {
     margin-top: 3ex;
 }
 */
+/*
 .mathbook-content .assemblage-like {
     margin-top: 1ex;
     margin-bottom: 2ex;
 }
+*/
 /* obsolete once we refactor paragraph spacing */
 .mathbook-content .assemblage-like > p:last-child, .mathbook-content .assemblage-like > ul:last-child, .mathbook-content .assemblage-like > ol:last-child {
     margin-bottom: 0;
@@ -1590,6 +1740,36 @@ a.mjx-svg-href  {
 
 .mathbook-content .exercise-like > .heading .codenumber:not(:empty):after {
     content: ".\2009 ";
+}
+
+.mathbook-content .objectives > .heading {
+    font-size: 1.25em;
+}
+
+/* Born-hidden example with a very long title */
+/* http://physics.thomasmore.edu/ConnectedPhysics/sss-netforce.html */
+.mathbook-content a .heading {
+    white-space: normal;
+}
+
+
+.mathbook-content .solutions > a, .mathbook-content .solutions > a:hover, .mathbook-content .solutions > a.active {
+    display: inline-block;
+    margin-right: 1em;
+}
+
+.mathbook-content .solutions .solution .type + .codenumber {
+    margin-left: 0.4em;
+}
+.mathbook-content .solutions .solution .title:last-child {
+    margin-left: 0.2em;
+    font-size: 90%;
+}
+.mathbook-content .solutions .solution .title:last-child::before {
+    content: "(";
+}
+.mathbook-content .solutions .solution .title:last-child::after {
+    content: ")";
 }
 
 /* omitting, because Historical notes end with a code number,
@@ -1648,10 +1828,6 @@ img:not(.cs) {
 
 .mathbook-content table tr td.lines {
     	white-space: nowrap;
-}
-
-p+ img.cs {
-    margin-top: 0;
 }
 
 figure img {
@@ -1995,15 +2171,15 @@ border-bottom: 1px solid #aaa;
   content  : "";
   position : absolute;
   z-index  : 1;
-  top   : 2em;  
+  top   : 0em;  
   bottom   : 0;
   left     : 0;
   pointer-events   : none;
   background-image : linear-gradient(to bottom, 
-                    rgba(255,255,255, 0), 
+                    rgba(255,255,255, 0.4), 
                     rgba(255,255,255, 1) 90%);
   width    : 550px;
-  height   : 6em;
+  height   : 8em;
 }
 /* example of where the following is needed? */
 .mathbook-content .aside-like * {
@@ -2042,6 +2218,9 @@ border-bottom: 1px solid #aaa;
   border: 1px dotted #aaa;
 }
 
+.mathbook-content article.aside-like > p:first-child {
+    margin-top: 0;
+}
 .mathbook-content article.aside-like > *:last-child {
     margin-bottom: 0;
 }
@@ -2408,11 +2587,13 @@ http://mathbook.pugetsound.edu/examples/sample-article/html/interesting-corollar
 }
 .mathbook-content .exercise-like > .exercise-like p {
     margin-top: 1.25em;
-    margin-bottom: 0.25em;
+/*    margin-bottom: 0.25em; */
 }
+/*
 .mathbook-content .exercise-like > .exercise-like > .heading + p::after {
     margin-bottom: 0.25em;
 }
+*/
 .mathbook-content .example-like > .heading + .introduction {
     display: inline;
 }
@@ -2421,26 +2602,28 @@ http://mathbook.pugetsound.edu/examples/sample-article/html/interesting-corollar
 }
 .mathbook-content .example-like > .exercise-like p {
     margin-top: 1.25em;
-    margin-bottom: 0.25em;
+/*    margin-bottom: 0.25em;  */
 }
+/*
 .mathbook-content .example-like > .exercise-like > .heading + p::after {
     margin-bottom: 0.25em;
 }
+*/
 .mathbook-content .conclusion p:last-child {
     margin-bottom: 0.25em;
 }
 /* not sure about these two.  there may be bad side-effects */
+/*
 .mathbook-content .example-like p {
     margin-top: 1.25em;
-    margin-bottom: 0.25em;
 }
 .mathbook-content .example-like ol, .mathbook-content .example-like ul {
     margin-top: 1.25em;
-    margin-bottom: 0.25em;
 }
 .mathbook-content .example-like > .heading + p::after {
     margin-bottom: 0.25em;
 }
+*/
 
 /* end of nested tasks */
 
@@ -2471,10 +2654,38 @@ http://mathbook.pugetsound.edu/examples/sample-article/html/interesting-corollar
 
 /* to enable hovering over aside-like */
 /* div.page, main.main, body.mathbook-article, */
-body.mathbook-book, body.mathbook-article, .mathbook-content section.chapter, .mathbook-content section.introduction, .mathbook-content section.conclusion, .mathbook-content section.section, .mathbook-content section.subsection, .mathbook-content section.subsubsection, .mathbook-content article {
+body.mathbook-book, body.mathbook-article, .mathbook-content section.chapter, .mathbook-content section.introduction, .mathbook-content section.conclusion, .mathbook-content section.section, .mathbook-content section.subsection, .mathbook-content section.subsubsection, .mathbook-content article, #content.mathbook-content {
     pointer-events: none;
 }
-html nav, html header, .mathbook-content article.aside-like, .mathbook-content * {
+html nav, html header, .mathbook-content article.aside-like, .mathbook-content *,
+body.mathbook-book .MathJax_Menu, body.mathbook-article .MathJax_Menu {
+    pointer-events: auto;
+}
+.mathbook-content ol, .mathbook-content ul {
+    pointer-events: none;
+}
+.mathbook-content ol li, .mathbook-content ul li {
+    pointer-events: auto;
+}
+div, span, button {
     pointer-events: auto;
 }
 
+/* used when knowl content is hidden in the page */
+.hidden-content {
+    display: none;
+}
+
+/*
+   See 10.1.8c in http://faculty.valpo.edu/calculus3ibl/ch10_01_gradient.html
+and condider having this replace line 3338 of the general code (which uses .heading + p)
+*/
+.mathbook-content .example-like > .exercise-like > p:first-of-type {
+    display: inline;
+}
+.mathbook-content .example-like > .exercise-like > .aside-like {
+    margin-top: -3em;
+}
+.mathbook-content .example-like > .exercise-like > .aside-like.front {
+    margin-top: 0;
+}
