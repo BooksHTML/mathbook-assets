@@ -181,6 +181,10 @@
     @extend %environment-base;
 }
 
+.listitem {
+    @extend %environment-base;
+}
+
 .example-like {
     @extend %environment-base;
 }
