@@ -1,8 +1,8 @@
 .hint {
-    display:block;
+    display: block;
 
     [knowl] {
-        font-weight:lighter;
+        font-weight: lighter;
     }
 }
 
@@ -27,15 +27,17 @@ div.center img {
     text-align: center;
 }
 
-.caption .counter:after { content: " ";}
-
-/* above repeated for captions outside figures */
+.caption .counter::after {
+    content: " ";
+}
 
 .caption .heading {
     font-weight: bold;
 }
 
-.caption .heading:after { content: " ";}
+.caption .heading::after {
+    content: " ";
+}
 
 .caption .counter {
     font-weight: bold;
@@ -43,17 +45,17 @@ div.center img {
 
 .unprocessed {
     padding: 8px;
-    background-color: rgb(255,230,230)
-}
+    background-color: #ffe6e6;
 
-.unprocessed .unprocessed {
-    margin: 8px;
-    background-color: rgb(255,200,255)
-}
+    .unprocessed {
+        margin: 8px;
+        background-color: #ffc8ff;
 
-.unprocessed .unprocessed .unprocessed {
-    margin: 8px;
-    background-color: rgb(205,205,255)
+        .unprocessed {
+            margin: 8px;
+            background-color: #cdcdff;
+        }
+    }
 }
 
 .l {
@@ -69,55 +71,56 @@ div.center img {
 }
 
 .vv {
-    border-left: 2px solid #000000;
-    border-right: 2px solid #000000;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
 }
 
 .vcv {
-    border-left: 2px solid #000000;
-    border-right: 2px solid #000000;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
     text-align: center;
 }
 
 .vcvv {
-    border-left: 2px solid #000000;
-    border-right: 4px solid #000000;
+    border-left: 2px solid black;
+    border-right: 4px solid black;
     text-align: center;
 }
 
 .vlv {
-    border-left: 2px solid #000000;
-    border-right: 2px solid #000000;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
     text-align: left;
 }
 
 .vrv {
-    border-left: 2px solid #000000;
-    border-right: 2px solid #000000;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
     text-align: right;
 }
 
 .rv {
-    border-right: 2px solid #000000;
+    border-right: 2px solid black;
     text-align: right;
 }
 
 .lv {
-    border-right: 2px solid #000000;
+    border-right: 2px solid black;
     text-align: left;
 }
 
 .cv {
-    border-right: 2px solid #000000;
+    border-right: 2px solid black;
     text-align: center;
 }
 
 .Xv {
-    border-right: 2px solid #000000;
+    border-right: 2px solid black;
     text-align: left;
 }
+
 .vc {
-    border-left: 2px solid #000000;
+    border-left: 2px solid black;
     text-align: center;
 }
 
@@ -129,11 +132,17 @@ div.center img {
     margin-top: 5px;
 }
 
-// TODO copy exercise like to others
-.example-like > .heading, .exercise-like > .heading, .remark-like > .heading, aside-like > .heading, .exercise-like > h5, .example-like > h5, .remark-like > h5, .aside-like > h5 {
+// TODO copy exercise-like to others
+.example-like > .heading,
+.exercise-like > .heading,
+.remark-like > .heading,
+.aside-like > .heading,
+.exercise-like > h5,
+.example-like > h5,
+.remark-like > h5,
+.aside-like > h5 {
     display: inline;
     font-weight: bold;
-    font-size: 19px;
     font-size: 1.05em;
 }
 
@@ -141,19 +150,19 @@ div.center img {
     display: inline;
 }
 
-.exercise-like > h5:after, .example-like > h5:after, .remark-like > h5:after {
-    content:". ";
+.exercise-like > h5::after, .example-like > h5::after, .remark-like > h5::after {
+    content: ". ";
 }
 
-.exercise-like > h5 .counter:before, .example-like > h5 .counter:before, .remark-like > h5 .counter:before {
-    content:" ";
+.exercise-like > h5 .counter::before, .example-like > h5 .counter::before, .remark-like > h5 .counter::before {
+    content: " ";
 }
 
 article.example-like > article.remark-like {
     margin-top: 10pt;
 }
 
-.minipage  + .minipage {
+.minipage + .minipage {
     display: inline-block;
 }
 
@@ -166,28 +175,25 @@ article.example-like > article.remark-like {
     max-width: 960px;
 }
 
-/* 
- * The next section link at the footer of a section
- * TODO use link-directional mixin instead 
- */
+// The next section link at the footer of a section
+// TODO use link-directional mixin instead
 .nextsection {
     text-align: center;
     padding: 10px;
-    background-color: maroon;
-    color: #FFEECC;
-    font-size: 
+    background-color: #800000;
+    color: #ffeecc;
 }
 
 // TODO integrate this somehow!
-/* sup knowls are used for footnotes */
+// sup knowls are used for footnotes
 sup [knowl] {
-    padding: 0px 0px 0px 3px;
+    padding: 0 0 0 3px;
 }
 
 sup .active[knowl] {
-    padding: 0px 0px 0px 3px;
+    padding: 0 0 0 3px;
 }
 
 sup [knowl]:hover {
-    padding: 0px 0px 0px 3px;
+    padding: 0 0 0 3px;
 }
