@@ -1,0 +1,9 @@
+[submodule "javascript/espy"]
+	path = javascript/espy
+	url = https://github.com/darsain/espy.git
+[submodule "javascript/sticky"]
+	path = javascript/sticky
+	url = https://github.com/garand/sticky.git
+[submodule "javascript/modernizr"]
+	path = javascript/modernizr
+	url = https://github.com/Modernizr/Modernizr.git

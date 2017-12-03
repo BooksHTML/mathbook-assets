@@ -1,9 +1,8 @@
-# Generated files
-gen
+# Node Packages
+node_modules
 
-# Repos we don't want to include
-fcla
-fclaxml
+# Generated Output
+public
 
-# SASS / Compass metadata
+# SASS / Compass Metadata
 .sass-cache
