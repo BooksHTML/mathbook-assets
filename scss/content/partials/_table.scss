@@ -1,10 +1,7 @@
-@import "../_content_config.scss";
-
 table {
-    
-    border-collapse:collapse;
+    border-collapse: collapse;
 
-    .center & { 
+    .center & {
         text-align: center;
         margin-left: auto;
         margin-right: auto;
@@ -17,34 +14,34 @@ table {
         font-size: 90%;
 
         &.hline {
-            padding-left: 0px;
-            padding-right: 0px;
+            padding-left: 0;
+            padding-right: 0;
         }
 
         &.hlinethick {
-            padding-left: 0px;
-            padding-right: 0px;
+            padding-left: 0;
+            padding-right: 0;
         }
 
         &.hline hr  {
-            margin-top:0;
-            margin-bottom:0;
+            margin-top: 0;
+            margin-bottom: 0;
             margin-left: -1px;
             margin-right: -1px;
-            border: 1px solid rgb(0,0,0);
+            border: 1px solid;
+            border-color: black;
         }
 
         &.hlinethick hr  {
-            margin-top:0;
-            margin-bottom:0;
+            margin-top: 0;
+            margin-bottom: 0;
             margin-left: -1px;
             margin-right: -1px;
-            border: 2px solid rgb(0,0,0);
+            border: 2px solid;
+            border-color: black;
         }
     }
-}
 
-table {
     td.onesubject {
         font-size: 120%;
     }

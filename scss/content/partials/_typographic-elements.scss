@@ -1,9 +1,7 @@
-@import "../../shared/_css_message.scss";
-@import "../_content_config.scss";
 @import "../../shared/typography";
 
 %heading-base {
-    @include typography-heading-base();
+    @include typography-heading-base;
 }
 
 h1, %h1 {
@@ -26,7 +24,7 @@ h4, %h4 {
     @include typography-heading-size(h4);
 }
 
-h5, %h5{
+h5, %h5 {
     @extend %heading-base;
     @include typography-heading-size(h5);
 }
@@ -36,43 +34,40 @@ h6, %h6 {
     @include typography-heading-size(h6);
 }
 
-/* deleted by David Farmer on 2/15/16 because it is too non-specific
- * and difficult to over-ride in MathJax
- * Then put back with the "p > a" restriction.  (2/19/16)
- */
-section h2 > a, li > a, li > %a, p > a, p> %a, .image-links > a {
+p > a, p> %a, li > a, li > %a, section h2 > a, .image-links > a {
     &:link, &:visited {
-        @include typography-link-state($state:default)
+        @include typography-link-state($state: default)
     }
 
     &:hover, &:focus {
-        @include typography-link-state($state:hover);
+        @include typography-link-state($state: hover);
     }
 
     &:active {
-        @include typography-link-state($state:active);
+        @include typography-link-state($state: active);
     }
 }
 
 p, %p {
-    @include typography-paragraph();
+    @include typography-paragraph;
 }
 
 blockquote .blockquote, %blockquote {
-    @include typography-blockquote();
+    @include typography-blockquote;
 }
 
 address, .address, %address {
-    @include typography-address();
+    @include typography-address;
 }
 
 // Unordered and Ordered lists
-// Adapted from twitter bootstrap
 ul,
 ol {
     // Set correct line-height
     @include adjust-font-size-to($typography-font-size-base);
+
     margin-top: 0;
+
     @include margin-trailer;
 
     ul,
@@ -81,16 +76,13 @@ ol {
     }
 }
 
-// Unstyled keeps list items block level,
-// just removes default browser padding and list-style
-// Adapted from twitter bootstrap
+// Unstyled keeps list items block level, just removes default browser padding and list-style.
 .list-unstyled {
     padding-left: 0;
     list-style: none;
 }
 
-// Inline turns list items into inline-block
-// Adapted from twitter bootstrap
+// Inline turns list items into inline-block/
 .list-inline {
     @extend .list-unstyled;
 
@@ -106,18 +98,22 @@ ol {
 }
 
 // Description Lists
-// Adapted from twitter bootstrap
 dl {
-    margin-top: 0; // Remove browser default
+    // Remove browser default
+    margin-top: 0;
     @include margin-trailer;
 }
+
 dt,
 dd {
     @include adjust-font-size-to($typography-font-size-base);
 }
+
 dt {
     font-weight: bold;
 }
+
 dd {
-    margin-left: 0; // Undo browser default
+    // Remove browser default
+    margin-left: 0;
 }

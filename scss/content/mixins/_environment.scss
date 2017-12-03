@@ -1,39 +1,36 @@
-@import "../_content_config.scss";
-@import "../../shared/_typography.scss";
-@import "../../shared/_heading.scss";
-@import "../../shared/_knowl.scss";
+@import "../../shared/typography";
+@import "../../shared/heading";
+@import "../../shared/knowl";
 
 $environment-heading-font-size: $typography-font-size-h5 !default;
-// $environment-heading-after: ".\2009 " !default;
 $environment-heading-after: "" !default;
 
-// Defaults for environments
+// Default styling for environments.
 @mixin environment-base {
-
-    // Select the heading
     @include heading-selector {
-        // Include base heading styles
-        @include heading-base($heading-after:$environment-heading-after);
+        // Use default styling for headings.
+        @include heading-base($heading-after: $environment-heading-after);
 
-        // Adjust the heading size/line-height/margins
+        // Adjust sizing of heading based on font size.
         @include typography-heading-size($environment-heading-font-size);
 
         // TODO should we move links into heading-base?
-        /* Support links in headings */
+
+        // Support anchor links in headings
         a {
-            @include heading-link();
+            @include heading-link;
         }
 
-        /* Support knowl links in headings */
+        // Support knowl links in headings
         *[knowl] {
-            @include knowl-link($font-type:serif);
-            margin-left:-3px;
+            @include knowl-link($font-type: serif);
+            margin-left: -3px;
         }
     }
 
-    // Default to inline heading
-    @include heading-force-inline();
+    // Use inline headings.
+    @include heading-force-inline;
 
-    // One line-height bottom margin
+    // Add a bottom margin of one line-height.
     @include margin-trailer(1);
 }

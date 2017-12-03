@@ -1,18 +1,11 @@
-@import "../_content_config.scss";
 @import "../../shared/typography";
 @import "../../shared/heading";
-@import "../../shared/_knowl.scss";
+@import "../../shared/knowl";
 @import "../mixins/environment";
 
-/*******************************************************************************
- * Environments
- ******************************************************************************/
-
-// A placeholder class for @extending.
-// This will not output CSS unless it is @extended.
-// See SASS docs for more details.
+// Environment base configuration, used for extending.
 %environment-base {
-    @include environment-base();
+    @include environment-base;
 }
 
 .definition-like {
@@ -28,153 +21,107 @@
 
     .statement {
 
-        display:inline;
+        display: inline;
 
         p:first-child {
-            display:inline;
+            display: inline;
         }
 
         &:last-child, &:last-of-type {
-            margin-bottom:0;
+            margin-bottom: 0;
         }
     }
 }
 
 .proof {
+    // @davidfarmer has asked that we keep proofs separate in CSS output,
+    // so we use the mixin rather than extending %environment-base.
+    @include environment-base;
 
-    // use rgba so it looks nice inside knowls too
-    $border-color: rgba(black, .1);
-    $border-width: .1em;
+    $border-color: rgba(black, 0.1);
+    $border-width: 0.1em;
     $padding-right: rhythm(0.5);
-//    $tombstone-color: rgba(black, 0.5);
-
-    // @davidfarmer has asked that we keep proofs separate in CSS output
-    // so we use the mixin rather than extending %environment-base
-    @include environment-base();
 
     & {
         @include heading-selector {
             font-style: italic;
-            font-weight:normal;
-            /* It helps to have a little bit of extra space after proof */
+            font-weight: normal;
             margin-right: 0.75em;
         }
 
-        position:relative;
-
-        /* dotted borders are just really ugly... */
-        /*border-right: 1px dotted #aaa;*/
-
-        /* Less use a light solid one */
+        position: relative;
         border-right: $border-width solid $border-color;
 
-        /* Cut the border up into the top margin */
-//        margin-top: -rhythm(.5);
-//        padding-top: rhythm(.5);
-
-        /* Cut the border into the right margin */
+        // Cut the border into the right margin
         padding-right: $padding-right;
-        margin-right:-($padding-right + $border-width);
-
-        /* Cut the tombstone into the standard margin-bottom */
-//      @include padding-trailer(.5);
-//      @include padding-trailer(0.1);
-//        @include margin-trailer(2.0);
+        margin-right: -($padding-right + $border-width);
 
         @media screen and (max-width: $screen-md-max) {
-            /* Bring border out of the right margin */
-            margin-right:0;
+            // Bring border out of the right margin
+            margin-right: 0;
         }
 
         @media screen and (max-width: $screen-xs-max) {
-            /* Remove the border */
-            padding:0;
-            margin-right:0;
-            border-right:0;
-            padding-top:0;
-
-            /* Make more space for tombstone */
-//            @include padding-trailer;
-//            @include margin-trailer;
-
+            // Remove the border
+            padding: 0;
+            margin-right: 0;
+            padding-top: 0;
+            border-right: none;
         }
     }
 
-    &:after {
-        content:'';
+    &::after {
+        content: "";
         border-bottom: $border-width solid $border-color;
         display: block;
         margin-left: auto;
-        margin-right: -1 * $padding-right;  /* so the corner of the L meets */
+        // so the corner of the L meets
+        margin-right: -1 * $padding-right;
         width: 1.5em;
         padding-bottom: 0.25em;
-
-//        content:"\220E";
-//        position:absolute;
-//        width: 1em;
-//        right:0;
-//        bottom:0;
-//        margin:0 0 -0.3em 0; 
-//
-//        color: $tombstone-color;
-//        text-align:right;
-
-//        @media screen and (max-width: $screen-xs-max) {
-//            /* Center the tombstone */
-//            right:50%;
-//            margin-right:-.5em;
-//            text-align:center;
-//        }
     }
 }
 
 .hiddenproof {
-
-    // use rgba so it looks nice inside knowls too
-
     // @davidfarmer has asked that we keep proofs separate in CSS output
     // so we use the mixin rather than extending %environment-base
-    @include environment-base();
+    @include environment-base;
 
     & {
         @include heading-selector {
             font-style: italic;
-            font-weight:normal;
-            /* It helps to have a little bit of extra space after proof */
-            margin-right:.25em;
+            font-weight: normal;
+            // It helps to have a little bit of extra space after proof
+            margin-right: 0.25em;
         }
 
-        position:relative;
+        position: relative;
 
-        /* Cut the border up into the top margin */
+        // Cut the border up into the top margin
         margin-top: -0.5em;
         padding-top: 0;
 
-        @include margin-trailer(1.0);
+        @include margin-trailer(1);
 
         @media screen and (max-width: $screen-md-max) {
-            /* Bring border out of the right margin */
-            margin-right:0;
+            // Bring border out of the right margin
+            margin-right: 0;
         }
 
         @media screen and (max-width: $screen-xs-max) {
-            /* Remove the border */
-            padding:0;
-            margin-right:0;
-            border-right:0;
-            padding-top:0;
-
-//            /* Make more space for tombstone */
-//            @include padding-trailer;
-//            @include margin-trailer;
+            // Remove the border
+            padding: 0;
+            margin-right: 0;
+            padding-top: 0;
+            border-right: none;
         }
     }
 
 }
 
 .hiddenproof a>.heading {
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .remark-like {
@@ -193,21 +140,6 @@
     @extend %environment-base;
 }
 
-// TODO what is this? does it belong in content or ui?
-// TODO tie values into variables for vertical rythym and color
 .aside-like {
     @extend %environment-base;
-
-    // From addon
-    // -------------
- //   padding: 8px 15px 10px 15px;
- //   margin: 5px 0px 5px 10px;
- //   background-color: rgb(245,250,255);
- //   border: 2px solid rgb(220,235,250);
-//
- //   .aside-like {
- //       background-color: rgb(250,255,245);
- //       border: 1px dotted #aaa;
- //   }
 }
-

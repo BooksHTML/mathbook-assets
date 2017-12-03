@@ -1,23 +1,21 @@
-@import "../_content_config.scss";
-@import "../../shared/_typography.scss";
+@import "../../shared/typography";
 @import "../../shared/heading";
 
 $figure-heading-after: ". " !default;
 
 figure {
-
     & {
-        /* maintain vertical rhythym with line-height sized trailing margin */
         @include margin-trailer;
     }
 
     &.wrap {
         float: right;
         margin-right: 0;
-        /*margin-left:30px;*/
-        margin-left:rhythm(1);
+        margin-left: rhythm(1);
 
-        img { width: 250px; }
+        img {
+            width: 250px;
+        }
     }
 
     img {
@@ -26,8 +24,8 @@ figure {
         margin-right: auto;
 
         &.wrap {
-            float:right;
-            margin:0;
+            float: right;
+            margin: 0;
         }
     }
 
@@ -38,29 +36,23 @@ figure {
 
 }
 
-// no reason to insist figcaption occurs inside a figure
-
 figcaption {
-        /* We treat figcaptions just like headings */
-        @include heading-selector {
-            @include heading-base($heading-after:$figure-heading-after);
-            @include heading-force-inline();
-        }
+    // We treat figcaptions just like headings
+    @include heading-selector {
+        @include heading-base($heading-after: $figure-heading-after);
+        @include heading-force-inline;
+    }
 
-        & {
-            @include adjust-font-size-to($typography-font-size-base);
-            margin: 0 auto;
-            padding-left: 2em;
-            @include margin-leader;
-        }
-     //       text-indent: -2em;
-     //       text-align: center;
+    & {
+        @include adjust-font-size-to($typography-font-size-base);
+        margin: 0 auto;
+        padding-left: 2em;
+        @include margin-leader;
+    }
 
-        // From addon
-        &.wrap {
-            margin-left: $base-half-leader;
-            margin-right: $base-half-leader;
-            text-align: center;
-        }
+    &.wrap {
+        margin-left: $base-half-leader;
+        margin-right: $base-half-leader;
+        text-align: center;
+    }
 }
-// }
