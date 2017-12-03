@@ -1,0 +1,17 @@
+@import "../../shared/typography";
+
+div.searchwrapper {
+    .gsc-control-cse {
+        width: 200px !important;
+    }
+
+    input.gsc-input {
+        background: none !important;
+    }
+}
+
+@media screen and (max-width: $screen-sm-max) {
+    div.searchwrapper {
+        display: none !important;
+    }
+}

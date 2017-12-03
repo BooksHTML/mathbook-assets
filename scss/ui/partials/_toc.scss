@@ -1,26 +1,25 @@
-@import "../_ui_config.scss";
+@import "../ui_config";
 @import "../mixins/navtree";
-@import "compass/css3/inline-block";
 
-$font-multiplier: .92;
-$font-size:$font-multiplier * $typography-font-size-base;
+$font-multiplier: 0.92;
+$font-size: $font-multiplier * $typography-font-size-base;
 
-$codenumber-width:0.8*$font-size;  // was .5*$font-size;
-$codenumber-gutter-right:0.3*$font-size;  // was .5*$font-size;
+$codenumber-width: 0.8 * $font-size;
+$codenumber-gutter-right: 0.3 * $font-size;
 
-$title-offset:$codenumber-width + $codenumber-gutter-right;
+$title-offset: $codenumber-width + $codenumber-gutter-right;
 
 // Used for headings and, on mobile, for both headings and children
-$segment-height:(1.25/$font-multiplier)*$typography-line-height-computed;
-$segment-line-height:.7*$typography-line-height-computed;
+$segment-height: (1.25 / $font-multiplier) * $typography-line-height-computed;
+$segment-line-height: 0.7 * $typography-line-height-computed;
 $segment-border-width: 1px;
 
 // Child segments on desktop
-$child-segment-height:(1/$font-multiplier)*$typography-line-height-computed;
-$child-segment-line-height:.7*$typography-line-height-computed;
+$child-segment-height: (1 / $font-multiplier) * $typography-line-height-computed;
+$child-segment-line-height: 0.7 * $typography-line-height-computed;
 $child-segment-border-width: 1px;
 
-$base-indent:$ui-left-margin;
+$base-indent: $ui-left-margin;
 $base-indent-touch: $ui-left-margin-touch;
 
 $child-indent: $base-indent + $title-offset;
@@ -28,15 +27,16 @@ $child-indent-touch: $base-indent-touch + $title-offset;
 
 
 & {
-    /* IMPORTANT height must be calculated by javascript. */
-    width:$ui-sidebar-left-width;
-    margin:0;
-    font-size:$font-size;
+    // IMPORTANT height must be calculated by javascript.
+    width: $ui-sidebar-left-width;
+    margin: 0;
+    font-size: $font-size;
 
     // Not sure about this one...we'll see
-    overflow-y:auto;
-    overflow-x:hidden;
-    /* Enable momentum scrolling on iOS */
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    // Enable momentum scrolling on iOS
     -webkit-overflow-scrolling: touch;
 }
 
@@ -44,10 +44,10 @@ $child-indent-touch: $base-indent-touch + $title-offset;
 
 h2 {
     & {
-        display:block;
+        display: block;
         font-family: $typography-heading-font-family;
-        font-weight:700;
-        font-size: 1em; /* Set font size on ToC */
+        font-weight: 700;
+        font-size: 1em; // Set font size on ToC
         margin: 0;
     }
 
@@ -57,9 +57,9 @@ h2 {
         $border-color-hover: darken($ui-toc-heading-bg-hover, 10%);
 
         @include navtree-segment(
-            $font-size:$font-size,
+            $font-size: $font-size,
             $height: $segment-height,
-            $line-height:$segment-line-height,
+            $line-height: $segment-line-height,
             $indent: $base-indent,
 
             $border-width: $segment-border-width,
@@ -77,9 +77,9 @@ h2 {
 
         @media screen and (max-width: $screen-sm-max) {
             @include navtree-segment(
-                $font-size:$font-size,
-                $height: $ui-touch-scale*$segment-height,
-                $line-height:$ui-touch-scale*$segment-line-height,
+                $font-size: $font-size,
+                $height: $ui-touch-scale * $segment-height,
+                $line-height: $ui-touch-scale * $segment-line-height,
                 $indent: $base-indent-touch,
 
                 $border-width: $segment-border-width,
@@ -111,24 +111,24 @@ h2 {
 }
 
 ul {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     list-style-type: none;
 
     li {
         display: block;
-        margin: 0px;
-        padding: 0px;
+        margin: 0;
+        padding: 0;
 
         $border-color: darken($ui-color-bg, 5%);
-        $border-color-hover:darken($ui-link-block-bg-hover, 10%);
+        $border-color-hover: darken($ui-link-block-bg-hover, 10%);
 
         a {
 
             @include navtree-segment(
-                $font-size:$font-size,
+                $font-size: $font-size,
                 $height: $child-segment-height,
-                $line-height:$child-segment-line-height,
+                $line-height: $child-segment-line-height,
                 $indent: $child-indent,
 
                 $border-width: $child-segment-border-width,
@@ -144,12 +144,12 @@ ul {
                 $bg-active: $ui-link-block-bg-active
             );
 
-            @media screen and (max-width:$screen-sm-max) {
+            @media screen and (max-width: $screen-sm-max) {
 
                 @include navtree-segment(
-                    $font-size:$font-size,
-                    $height: $ui-touch-scale*$segment-height,
-                    $line-height:$ui-touch-scale*$segment-line-height,
+                    $font-size: $font-size,
+                    $height: $ui-touch-scale * $segment-height,
+                    $line-height: $ui-touch-scale * $segment-line-height,
                     $indent: $child-indent-touch,
 
                     $border-width: $segment-border-width,

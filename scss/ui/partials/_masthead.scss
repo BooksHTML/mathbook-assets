@@ -1,133 +1,117 @@
 @import "../ui_config";
 
-@import "compass/css3/box-shadow";
-@import "compass/utilities/general/clearfix";
-@import "compass/css3/inline-block";
-
 // For icon variables
-@import "lib/ionicons/ionicons-variables";
+@import "../lib_extensions/ionicons-variables";
 
-@import "../../shared/_typography.scss";
-@import "../../shared/_heading.scss";
-@import "../../shared/_css_message.scss";
+@import "../../shared/typography";
+@import "../../shared/heading";
 
 // Note: These variables should only depend on ui module variables
-$masthead-bg-color: change-color($ui-color-bg, $lightness:98%) !default;
+$masthead-bg-color: change-color($ui-color-bg, $lightness: 98%) !default;
 $masthead-title-color: $brand-primary;
-$masthead-subtitle-color:change-color($ui-color-base, $lightness:35%);
-$masthead-byline-color: change-color($masthead-bg-color, $lightness:20%) !default;
+$masthead-subtitle-color: change-color($ui-color-base, $lightness: 35%);
+$masthead-byline-color: change-color($masthead-bg-color, $lightness: 20%) !default;
 $masthead-font-family: $typography-heading-font-family;
 
 & {
     position: relative;
-    background: $masthead-bg-color;
-    min-height:inherit;
-    border:none;
-    @include box-shadow(none);
+    background-color: $masthead-bg-color;
+    min-height: inherit;
+    border: none;
+    box-shadow: none;
 }
 
 .banner {
-    border-bottom:1px solid darken($masthead-bg-color, 15%);
-    /* to ensure children's margin-top works */
-    border-top:1px solid transparent;
+    border-bottom: 1px solid darken($masthead-bg-color, 15%);
+    // to ensure children's margin-top works
+    border-top: 1px solid transparent;
 
-    @include clearfix();
-    @include padding-leader(.5);
-    @include padding-trailer(.9);
+    @include clearfix;
+    @include padding-leader(0.5);
+    @include padding-trailer(0.9);
 
-    @media screen and (max-width:$screen-xxs-max) {
-        padding-left:$ui-content-margin-xs;
-        padding-right:$ui-content-margin-xs;
+    @media screen and (max-width: $screen-xxs-max) {
+        padding-left: $ui-content-margin-xs;
+        padding-right: $ui-content-margin-xs;
     }
 }
 
 #title-container, .title-container {
     font-size: 1em;
     padding-left: $ui-left-margin;
-    @include clearfix();
+    @include clearfix;
 
-    /* On mobile phones */
-    @media screen and (max-width:$screen-xxs-max) {
-        padding:0;
-        text-align:center;
-        @include margin-leader(.5);;
+    // On mobile phones
+    @media screen and (max-width: $screen-xxs-max) {
+        padding: 0;
+        text-align: center;
+        @include margin-leader(0.5);
     }
 
     @include heading-selector {
         @include heading-base(
             $heading-before: none,
             $heading-after: none,
-            $title-after:none // use subtitle before instead
+            $title-after: none // use subtitle before instead
         );
 
         $font-size: $typography-font-size-h1;
+
         & {
             // This is one place where its okay not to use typography-heading-size
             // This heading is a little different than normal headings
-            margin:0;
+            margin: 0;
             @include adjust-font-size-to($font-size);
 
             // Override addon
-            font-family:$masthead-font-family;
+            font-family: $masthead-font-family;
             color: $masthead-title-color;
         }
 
-        /* On mobile phones */
-        @media screen and (max-width:$screen-xxs-max) {
+        // On mobile phones
+        @media screen and (max-width: $screen-xxs-max) {
             $font-size: $typography-font-size-h3;
             @include adjust-font-size-to($font-size);
-            margin:0;
-            @include margin-trailer(.5, $font-size);
+            margin: 0;
+            @include margin-trailer(0.5, $font-size);
         }
 
-        /* Support links inside title */
+        // Support links inside title
         a {
             &:link, &:visited {
-                @include typography-link-state(
-                            $state:default,
-                            $color:$masthead-title-color,
-                            $font-type: serif,
-                            $underlined: false);
+                @include typography-link-state($state: default, $color: $masthead-title-color, $font-type: serif, $underlined: false);
             }
 
             &:hover, &:focus {
-                @include typography-link-state(
-                            $state:hover,
-                            $font-type: serif,
-                            $underlined: true,
-                            $underline-size: .05);
+                @include typography-link-state($state: hover, $font-type: serif, $underlined: true, $underline-size: 0.05);
             }
 
             &:active {
-                @include typography-link-state(
-                            $state:active,
-                            $font-type: serif,
-                            $underlined: true,
-                            $underline-size: .05);
+                @include typography-link-state($state: active, $font-type: serif, $underlined: true, $underline-size: 0.05);
             }
         }
 
         // TODO add an option for forcing the subtitle onto a second line?
         .subtitle {
-            font-weight: normal; /* Much classier */
+            font-weight: normal; // Much classier
 
-            &:before {
+            &::before {
                 content: ": ";
             }
 
             @media screen and (max-width: $screen-sm-max) {
-                $subtitle-font-size:$typography-font-size-h2;
-                /* Force the subtitle onto a seperate line */
-                display:block;
+                $subtitle-font-size: $typography-font-size-h2;
+                // Force the subtitle onto a seperate line
+                display: block;
                 @include adjust-font-size-to(
                     $to-size: $subtitle-font-size,
-                    $from-size:$font-size);
+                    $from-size: $font-size);
 
-                /* De-emphasize relative to main title */
+                // De-emphasize relative to main title
                 color: $masthead-subtitle-color;
 
-                /* Remove colon */
-                &:before {
+                // Remove colon
+                &::before {
                     content: normal;
                 }
             }
@@ -138,32 +122,32 @@ $masthead-font-family: $typography-heading-font-family;
 
 #logo-link, .logo-link {
 
-    position:relative;
-    float:left;
+    position: relative;
+    float: left;
 
-    $font-size:2.5*$base-line-height; // must be px
-    font-size:$font-size;
-    margin-top: rhythm(.25, $font-size);
+    $font-size: 2.5 * $base-line-height; // must be px
+    font-size: $font-size;
+    margin-top: rhythm(0.25, $font-size);
 
     margin-left: $ui-left-margin;
-    text-align:center;
-    line-height:1; /* Must be 1 so that icon placeholder is centered */
+    text-align: center;
+    line-height: 1; // Must be 1 so that icon placeholder is centered
 
     img {
-        width:auto;
-        height:auto;
+        width: auto;
+        height: auto;
 
-        /* Allow font-size to control height
-         * so that icon placeholder height matches */
-        max-height:1em;
+        // Allow font-size to control height
+        // so that icon placeholder height matches
+        max-height: 1em;
     }
 
-    /* Display placeholder icon for css3 browsers (progressive enhancement) */
+    // Display placeholder icon for css3 browsers (progressive enhancement)
     &:empty {
 
         $icon-scale-factor: 1;
 
-        &:before {
+        &::before {
 
             &, .mathbook-book & {
                 content: $ionicon-var-android-book;
@@ -174,83 +158,74 @@ $masthead-font-family: $typography-heading-font-family;
             }
 
             font-family: "Ionicons";
-            font-size:$icon-scale-factor*1em;
+            font-size: $icon-scale-factor * 1em;
 
-            /* Center the icon in a square the size of the parent's font-size */
-            line-height:1/$icon-scale-factor;
-            width: (1/$icon-scale-factor)*1em;
-            @include inline-block(top);
-            text-align:center;
+            // Center the icon in a square the size of the parent's font-size
+            line-height: 1 / $icon-scale-factor;
+            width: (1 / $icon-scale-factor) * 1em;
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
 
-            color: #ccc;
+            color: #cccccc;
         }
 
-        &:hover:before {
+        &:hover::before {
             color: $brand-primary;
         }
 
-        &:active:before {
+        &:active::before {
             color: $brand-secondary;
         }
     }
 
-    /* Override addons */
+    // Override addons
     &:link, &:hover, &:active {
-        background:transparent;
-        border:none;
-        text-decoration:none;
+        background: transparent;
+        border: none;
+        text-decoration: none;
     }
 
-    /* On mobile phones */
-    @media screen and (max-width:$screen-xxs-max) {
-        display:block;
-        float:none;
-        margin:0;
+    // On mobile phones
+    @media screen and (max-width: $screen-xxs-max) {
+        display: block;
+        float: none;
+        margin: 0;
 
-        $font-size:2.5*$base-line-height; // must be px
-        font-size:$font-size;
+        $font-size: 2.5 * $base-line-height; // must be px
+        font-size: $font-size;
     }
 }
 
-/* IMPORTANT: #byline is deprecated! */
+// IMPORTANT: #byline is deprecated!
 #byline, .byline {
     $font-size: $typography-font-size-h4;
     color: $masthead-byline-color;
-    font-weight:normal;
-    margin:0;
+    font-weight: normal;
+    margin: 0;
     @include adjust-font-size-to($font-size);
-    min-height:inherit;
+    min-height: inherit;
 
     // Override addon
-    font-family:$masthead-font-family;
+    font-family: $masthead-font-family;
 
-    @media screen and (max-width:$screen-xxs-max) {
+    @media screen and (max-width: $screen-xxs-max) {
         $font-size: $typography-font-size-h6;
-        margin-top:0;
+        margin-top: 0;
         @include adjust-font-size-to($font-size);
     }
 
     a {
         &:link, &:visited {
-            @include typography-link-state(
-                        $state:default,
-                        $color: $masthead-byline-color,
-                        $font-type: serif,
-                        $underlined:true);
+            @include typography-link-state($state: default, $color: $masthead-byline-color, $font-type: serif, $underlined: true);
         }
 
         &:hover, &:focus {
-            @include typography-link-state(
-                        $state:hover,
-                        $font-type: serif,
-                        $underlined: true);
+            @include typography-link-state($state: hover, $font-type: serif, $underlined: true);
         }
 
         &:active {
-            @include typography-link-state(
-                        $state:active,
-                        $font-type: serif,
-                        $underlined: true);
+            @include typography-link-state($state: active, $font-type: serif, $underlined: true);
         }
     }
 }

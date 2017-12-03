@@ -1,7 +1,5 @@
-/*@import "../ui-config";*/
-@import "../../shared/_typography.scss";
+@import "../../shared/typography";
 @import "../mixins/buttons";
-@import "../../shared/_utilities.scss";
 
 $navtree-segment-color: $ui-link-block-color !default;
 $navtree-segment-color-hover: $ui-link-block-color-hover !default;
@@ -20,10 +18,10 @@ $navtree-segment-height: $typography-line-height-computed;
 
 // Apply to a codenumber if it should be positioned absolutely
 @mixin navtree-codenumber($indent, $width) {
-    position:absolute;
-    right:100%;
-    margin-right:-($indent+$width);
-    text-align:right;
+    position: absolute;
+    right: 100%;
+    margin-right: -($indent + $width);
+    text-align: right;
 }
 
 // Apply to titles adjacent to absolutely positioned codenumbers
@@ -32,7 +30,8 @@ $navtree-segment-height: $typography-line-height-computed;
     $codenumber-gutter-right
 
 ) {
-    @include inline-block(baseline);
+    display: inline-block;
+    vertical-align: baseline;
     margin-left: $codenumber-width + $codenumber-gutter-right;
 }
 
@@ -55,9 +54,7 @@ $navtree-segment-height: $typography-line-height-computed;
     }
 
     #{$codenumber-selector} + #{$title-selector} {
-        @include navtree-codenumber-title(
-                   $codenumber-width,
-                   $codenumber-gutter-right);
+        @include navtree-codenumber-title($codenumber-width, $codenumber-gutter-right);
 
     }
 
@@ -92,53 +89,47 @@ $navtree-segment-height: $typography-line-height-computed;
     $bg-hover: $navtree-segment-bg-hover,
     $bg-active: $navtree-segment-bg-active
 ) {
-    $lead:$height - $line-height;
-    $padding: ($lead - 2*$border-width)/2;
+    $lead: $height - $line-height;
+    $padding: ($lead - 2 * $border-width) / 2;
 
     & {
-        position:relative;
-        display:block;
+        position: relative;
+        display: block;
 
         // force the given font-size since all our calculations depend on it
-        font-size:$font-size;
+        font-size: $font-size;
 
-        padding:$padding;
-        padding-left:$indent;
+        padding: $padding;
+        padding-left: $indent;
 
-        border:$border-width solid $border-color;
-        border-right:none;
-        border-left:none;
+        border: $border-width solid $border-color;
+        border-right: none;
+        border-left: none;
     }
 
     &, &:link, &:visited, &:hover, &:active {
-        text-decoration:none;
+        text-decoration: none;
     }
 
     &, &:link, &:visited {
         color: $color;  //need a better name
-        background: $bg;
+        background-color: $bg;
     }
 
-//    &:hover {
-//        color: $color-hover;
-//        background: $bg-hover;
-//        border-color:$border-color-hover;
-//    }
-
     &.active, &:active {
-        color:$color-active;
-        background: $bg-active;
+        color: $color-active;
+        background-color: $bg-active;
     }
 
     &:hover {
         color: $color-hover;
-        background: $bg-hover;
-        border-color:$border-color-hover;
+        background-color: $bg-hover;
+        border-color: $border-color-hover;
     }
 
     &:active {
-        /* Depressed state on click but not when marked active */
-        @include button-depressable();
+        // Depressed state on click but not when marked active
+        @include button-depressable;
     }
 }
 
@@ -149,13 +140,13 @@ $navtree-segment-height: $typography-line-height-computed;
 ) {
 
     & {
-        border-top:none;
+        border-top: none;
     }
 
     &:hover {
-        /* Cover the previous items border-bottom with our top */
+        // Cover the previous items border-bottom with our top
         margin-top: -$border-width;
-        border-top:$border-width solid $border-color-hover;
+        border-top: $border-width solid $border-color-hover;
     }
 }
 
@@ -165,11 +156,11 @@ $navtree-segment-height: $typography-line-height-computed;
     $border-color: $navtree-segment-bg-hover
 ) {
     & {
-        border-top:$border-width solid $border-color;
+        border-top: $border-width solid $border-color;
     }
 
     &:hover {
-        margin-top:0;
+        margin-top: 0;
     }
 }
 
@@ -182,7 +173,7 @@ $navtree-segment-height: $typography-line-height-computed;
     }
 
     &:hover {
-        /* When we hover we want to show the last border */
-        border-color:$border-color-hover;
+        // When we hover we want to show the last border
+        border-color: $border-color-hover;
     }
 }

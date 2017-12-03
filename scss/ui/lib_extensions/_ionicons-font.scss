@@ -1,37 +1,61 @@
-/*
-* We use Base64 encoded ttf to get around firefox's cross-domain restriction 
-* It's a little less efficient since it bloats the css for browsers that wont
-* use ttf, but it's the only solution that doesn't require that we modify
-* the htaccess file. If Mathbook uses it's own  cdn to serve mathbook files for 
-* everyone someday, then we could use the htaccess fix instead.
-* See http://geoff.evason.name/2010/05/03/cross-domain-workaround-for-font-face-and-firefox/
-*/
-@import "compass/css3/font-face";
+@mixin font-face($name, $font-files, $eot: false, $weight: false, $style: false) {
+    @font-face {
+        font-family: quote($name);
+        @if $eot {
+            src: font-url($eot);
+            $font-files: font-url(unquote("#{$eot}?#iefix")) unquote("format('embedded-opentype')"), $font-files;
+        }
+        src: $font-files;
+        @if $weight {
+            font-weight: $weight;
+        }
+        @if $style {
+            font-style: $style;
+        }
+    }
+}
+
+// We use Base64 encoded ttf to get around firefox's cross-domain restriction.
+// It is a little less efficient since it bloats the css for browsers that will not use ttf,
+// but it is the only solution that doesn't require that we modify the .htaccess file.
+// If Mathbook uses its own cdn to serve mathbook files for everyone someday,
+// then we could use the .htaccess fix instead.
+// See http://geoff.evason.name/2010/05/03/cross-domain-workaround-for-font-face-and-firefox/
+
 @include font-face(
-    $ionicons-font-family, 
-    font-files("#{$ionicons-font-path}/ionicons.svg#Ionicons", svg), "#{$ionicons-font-path}/ionicons.eot#iefix", 
-    normal, 
-    normal);
+    $ionicons-font-family,
+    font-files(
+        "#{$ionicons-font-path}/ionicons.svg#Ionicons",
+        svg
+    ),
+    "#{$ionicons-font-path}/ionicons.eot#iefix",
+    normal,
+    normal
+);
+
 @include font-face(
-    $ionicons-font-family, 
+    $ionicons-font-family,
     inline-font-files(
-        "#{$ionicons-font-path}/ionicons.woff", 
-        woff, 
+        "#{$ionicons-font-path}/ionicons.woff",
+        woff,
         "#{$ionicons-font-path}/ionicons.eot",
-        truetype), 
-    $weight: normal, 
-    $style: normal);
+        truetype
+    ),
+    $weight: normal,
+    $style: normal
+);
 
 .ion {
-  display: inline-block;
-  font-family: $ionicons-font-family;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  text-rendering: auto;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    display: inline-block;
+    font-family: $ionicons-font-family;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    // sass-lint:disable no-vendor-prefixes
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
