@@ -4,6 +4,3 @@
 [submodule "javascript/sticky"]
 	path = javascript/sticky
 	url = https://github.com/garand/sticky.git
-[submodule "javascript/modernizr"]
-	path = javascript/modernizr
-	url = https://github.com/Modernizr/Modernizr.git

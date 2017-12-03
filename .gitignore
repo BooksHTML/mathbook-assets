@@ -3,6 +3,3 @@ node_modules
 
 # Generated Output
 public
-
-# SASS / Compass Metadata
-.sass-cache
