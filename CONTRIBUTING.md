@@ -16,7 +16,6 @@ Below are a few guidelines that help us maintain consistency throughout the code
 ## Semver and git-flow
 It is important that this project utilize [semantic versioning](http://semver.org/)
 so that Mathbook generators can reference a copy of these assets by version.
-
 To achieve this, it is **highly recommended** that you use the
 [git-flow](http://nvie.com/posts/a-successful-git-branching-model/) branching model.
 The best way to do so is to use the [git-flow git plugin](https://github.com/nvie/gitflow).
@@ -28,19 +27,17 @@ If you are contributing via pull requests...
     The core team will handle that.
 *   **Do not merge into develop.**
     Instead, submit your feature/hotfix branch.
-*   **Do not use `git-flow hotfix` to create hotfix branches**
+*   **Do not use `git-flow hotfix` to create hotfix branches.**
     Instead, manually create _named_ hotfix branches, like so:
     ```bash
-    # Where `from-tag` refers to the version at which 
-    # the hotfix needs to be applied
-    # If you are applying the hotfix to the latest version,
-    # use `master` as the `from-tag`.
+    # The `from-tag` refers to the version at which the hotfix needs to be applied.
+    # If you are applying the hotfix to the latest version, use `master` as the `from-tag`.
     $ git checkout -b hotfix/my-hotfix <from-tag>
     ```
     When you submit your pull request, please specify the `from-tag` used.
     The core team will handle converting named hotfix branches to versioned hotfix branches, like so:
     ```bash    
-    # the `from-tag` must match
+    # The `from-tag` must match.
     $ git-flow hotfix start <version-number> <from-tag>
     $ git merge --no-ff hotfix/named-hotfix
     $ git flow hotfix finish version-number
