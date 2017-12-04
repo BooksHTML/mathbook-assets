@@ -1,4 +1,3 @@
 #!/bin/bash
 
 basedir=`git rev-parse --show-toplevel`
-# compass compile $basedir/scss
