@@ -10,6 +10,9 @@ pre {
 }
 
 /* p and other block-level elements should have space at the top, and not the bottom */
+.mathbook-content h1, .mathbook-content h2, .mathbook-content h3, .mathbook-content h4, .mathbook-content h5, .mathbook-content h6 {
+    margin: 0;
+}
 .mathbook-content p {
     margin-top: 1.25em;
     margin-bottom: 0;
@@ -18,14 +21,22 @@ pre {
     margin-bottom: 0;
 }
 
-.mathbook-content section > article, .mathbook-content .introduction + article {
+.mathbook-content section > article {
     margin-top: 1.25em;
+    margin-bottom: 0;
+}
+.mathbook-content .introduction + article,
+.mathbook-content p + article {
+    margin-top: 1.25em;
+}
+.mathbook-content section > article.proof {
+    margin-top: 0.75em;
 }
 .mathbook-content .sagecell {
     margin-top: 1.25em;
 }
 
-.mathbook-content pre {
+.mathbook-content section > pre, .mathbook-content p + pre {
     margin-top: 1.25em;
 }
 
@@ -68,7 +79,9 @@ pre {
 .mathbook-content article > .heading + p {
     margin-top: 0;
 }
-.mathbook-content section > .heading + p, .mathbook-content section > header + p {
+/* go back and delete the header case when no longer needed */
+.mathbook-content section > .heading + p, .mathbook-content section > header + p,
+.mathbook-content section > .blob > p:first-child {
     margin-top: 0;
 }
 .mathbook-content section > .heading + article, .mathbook-content section > header + article {
@@ -97,7 +110,9 @@ pre {
     content: ": \2009";
 }
 
+/*
 .mathbook-content section > .heading > .title:not(:empty):last-child::after,
+*/
 .mathbook-content article > .heading > .title:not(:empty):last-child::after,
 .mathbook-content article > .heading > .title:not(:empty):last-child::after {
     content: ".\2009";
@@ -135,7 +150,10 @@ pre {
     put this back after the major CSS refactor
 */
 }
-.mathbook-content .heading, .mathbook-content pre {
+.mathbook-content .heading {
+    background-color: #fff; 
+}
+.mathbook-content section > pre, .mathbook-content p + pre {
     background-color: #fff; 
 }
 
@@ -157,6 +175,43 @@ pre {
 }
 
 /* end of layering colors */
+
+/*
+Greg's L
+
+The not(:first-child) is primarily for the case of a knowl that
+contains only a theorem or definition.
+
+In good writing, can a section start with a Theorem?
+(apparently I think not)
+
+Note: the styling for proofs is in the main CSS
+*/
+.mathbook-content article.theorem-like:not(:first-child),
+.mathbook-content article.definition-like:not(:first-child),
+.mathbook-content article.example-like:not(:first-child),
+.mathbook-content article.objectives:not(:first-child),
+.mathbook-content article.remark-like:not(:first-child) {
+    padding-left: 0.4em;
+    border-left: 1px solid #569;
+}
+
+.mathbook-content article.theorem-like:not(:first-child)::after,
+.mathbook-content article.definition-like:not(:first-child)::after,
+.mathbook-content article.objectives:not(:first-child)::after,
+.mathbook-content article.example-like:not(:first-child)::after,
+.mathbook-content article.remark-like:not(:first-child)::after {
+    content:'';
+    border-bottom: 1px solid #569;
+    display: block;
+    margin-right: auto;
+    margin-left: -0.4em;
+    padding-top: 0.25em;
+    width: 1.5em;
+}
+
+
+
 
 .mathbook-content section p.credit + p.credit {
     margin-top: 0.25em;
@@ -881,7 +936,7 @@ table tr td {
     text-align: right;
 }
 
-.mathbook-content table + article.theorem-like {
+.mathbook-content table + article {
     margin-top: 1em;
 }
 
@@ -948,6 +1003,10 @@ table tr td {
 }
 */
 
+.mathbook-content .knowl-output {
+    margin-bottom: 0;
+}
+
 .mathbook-content tt {
     font-size: 1.4em;
     margin-left: 0.2em;
@@ -970,7 +1029,7 @@ table tr td {
     margin-top: 0.5em;
 }
 
-.mathbook-content section header .heading a.permalink {
+.mathbook-content section .heading a.permalink {
     opacity: 0.1;
     font-size: 70%;
     color: #d00;
@@ -978,10 +1037,10 @@ table tr td {
     display: inline-block;
 }
 
-.mathbook-content section header .heading {
+.mathbook-content section .heading {
   display: inline-block;
 }
-.mathbook-content section header .heading + a.permalink {
+.mathbook-content section .heading + a.permalink {
     opacity: 0.2;
     color: #d00;
     font-weight: bold;
@@ -989,10 +1048,10 @@ table tr td {
     display: inline-block;
     margin-left: 0.5em;
 }
-.mathbook-content section.subsection header .heading + a.permalink {
+.mathbook-content section section .heading + a.permalink {
     font-size: 90%;
 }
-.mathbook-content section.subsubsection header .heading + a.permalink {
+.mathbook-content section section section .heading + a.permalink {
     font-size: 80%;
 }
 
@@ -1547,7 +1606,10 @@ a.mjx-svg-href  {
 .mathbook-content .exercisegroup .exercise-like .conclusion {
     margin-left: 1.5em;
 }
+/*
 .mathbook-content section > p + .hidden-knowl-wrapper {
+*/
+.mathbook-content section > .hidden-knowl-wrapper {
     margin-top: 1em;
 }
 
@@ -1940,25 +2002,6 @@ sup [knowl]:hover {
     content: ".";
 }
 
-/* new "Greg's L" styling for definitions, theorems, etc 
- */
-
-/* in main css
-article.proof {
-    padding-right: 1.25em;
-    border-right: 1px dotted #aaa;
-}
-
-article.proof:after {
-    content:'';
-    border-bottom: 1px dotted #aaa;
-    display: block;
-    margin-left: auto;
-    margin-right: -1.25em;
-    width: 1.5em;
-}
-*/
-
 figure pre.prettyprint {
     margin-top: 0;
     padding-left: 15px;
@@ -1974,23 +2017,6 @@ figure pre.prettyprint:before {
     padding-bottom: 0.25em;
     width: 2.5em;
 }
-
-
-article.example-like {
-    padding-left: 6px;
-    border-left: 1px solid #569;
-}
-
-article.example-like:after {
-    content:'';
-    border-bottom: 1px solid #569;
-    display: block;
-    margin-right: auto;
-    margin-left: -6px;
-    padding-top: 0.25em;
-    width: 1.5em;
-}
-
 
 .mathbook-content article.example-like > *:last-child {
     margin-bottom: 0;
@@ -2012,27 +2038,6 @@ article.example-like:after {
     margin-bottom: 0;
 }
 
-article.definition-like {
-    padding-left: 6px;
-    border-left: 1px solid #956;
-}
-
-article.definition-like:after {
-    content:''; 
-    border-bottom: 1px solid #956;
-    display: block;
-    margin-left: auto;
-    margin-left: -6px;
-    padding-top: 0.25em;
-    width: 1.5em;
-/*
-  border-right: 1px solid #956;
-  margin-right: -5px;
-  height: 2em;
-  margin-top: -2em; 
-*/
-}
-
 .mathbook-content article.definition-like *:last-child {
     margin-bottom: 0;
 }
@@ -2042,11 +2047,6 @@ article.definition-like:after {
 
 .mathbook-content .objectives {
     margin-bottom: 1.25em;
-}
-
-article.theorem-like, article.objectives {
-    padding-left: 6px;
-    border-left: 1px solid #66a;
 }
 
 article.objectives .heading .type + .codenumber:before {
@@ -2069,42 +2069,11 @@ article.list .heading .codenumber + .title:before {
     content: ":\2002";
 }
 
-article.theorem-like:after, article.objectives:after {
-  content:'';
-border-bottom: 1px solid #66a;
-  display: block;
-  margin-left: -6px;
-  margin-right: auto;
-    padding-top: 0.25em;
-  width: 1.5em;
-/*
-  border-left: 1px solid #66a;
-  margin-right: -5px;
-  height: 2em;
-  margin-top: -2em;
-*/
-}
-
 .mathbook-content article.theorem-like *:last-child, .mathbook-content article.objectives *:last-child { 
     margin-bottom: 0;
 }
 .mathbook-content article.theorem-like *:last-child::after, .mathbook-content article.objectives *:last-child::after {
     margin-bottom: 0;
-}
-
-article.remark-like {
-    padding-left: 6px;
-    border-left: 1px solid #aaa;
-}
-
-article.remark-like:after {
-  content:'';
-border-bottom: 1px solid #aaa;
-  display: block;
-  margin-right: auto;
-  margin-left: -6px;
-    padding-top: 0.25em;
-  width: 1.5em;
 }
 
 .mathbook-content article.remark-like > *:last-child {
@@ -2349,65 +2318,6 @@ border-bottom: 1px solid #aaa;
     margin-left: -300px !important;
 }
 
-/* hack for demo!  delete soon! */
-.mathbook-content p:empty + .aside-like  {
-    margin-top: -2.25em;
-}
-.mathbook-content p:empty + .aside-like.front  {
-    margin-top: -1.25em;
-}
-
-
-/* borders above should not appear in a knowl ref 
-   or when the example is created as a knowl */
-
-a > article.example-like {
-    padding-left: 0;
-    border-left: none;
-}
-
-a > article.example-like:after {
-  content:'';
-  border-bottom: none;
-  display: inline;
-  margin-left: 0;
-  margin-right: 0;
-  width: 0;
-}
-
-/*  this is helpful in a knowl
-.knowl figure pre.prettyprint {
-    padding-left: 15px;
-    border-left: none;
-}
-
-.knowl figure pre.prettyprint:before {
-    content:'';
-    border-top: none;
-    display: block;
-    margin-right: 0;
-    margin-left: 0;
-    padding-bottom: 0;
-    width: 0;
-}
-*/
-
-.knowl article.theorem-like, .knowl article.definition-like, .knowl article.remark-like, .knowl article.example-like, .knowl article.objectives {
-    padding-right: 0;
-    border-right: none;
-    border-left: none;
-}
-
-.knowl article.theorem-like:after, .knowl article.definition-like:after, .knowl article.remark-like:after, .knowl article.example-like:after, .knowl article.objectives:after {
-  content:'';
-  display: inline;
-  margin-left: 0;
-  margin-right: 0;
-  width: 0;
-  height: 0;
-  padding: 0;
-  border: none;
-}
 
 /* http://spot.pcc.edu/math/APEXCalculus/sec_prod_quot_rules.html
  * solution to Example 2.4.14
@@ -2688,4 +2598,8 @@ and condider having this replace line 3338 of the general code (which uses .head
 }
 .mathbook-content .example-like > .exercise-like > .aside-like.front {
     margin-top: 0;
+}
+
+.mathbook-content meta {
+    display: none;
 }
