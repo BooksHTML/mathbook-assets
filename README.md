@@ -10,6 +10,7 @@ You've just cloned the repo. What now?
 
 2.  Install dependencies:
     ```sh
+    $ npm run submodules
     $ npm install
     ```
 
@@ -20,10 +21,19 @@ You've just cloned the repo. What now?
     This performs local repository setup like initializing githooks.
 
 ## Deploying Assets
-To deploy the current state of the repository from the repo's rootdirectory:
+To deploy production ready versions of the assets, navigate to the project's root directory and run:
 ```sh
 $ npm run production
 ```
+To deploy expanded versions of the assets, i.e. ones that have not been minified, navigate to the project's root directory and run:
+```sh
+$ npm run expanded
+```
+While actively editing asset source files, you can run the following command (from the root directory):
+```sh
+$ npm run editing
+```
+This will monitor the source files and recompile affected assets so that the impact of edits can be seen immediately.
 
 ## Contributing
 Please see the [Contributors Guidelines](CONTRIBUTING.md) before contributing to this project.
