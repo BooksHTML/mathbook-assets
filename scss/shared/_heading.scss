@@ -14,8 +14,9 @@ $heading-after:" " !default;
 ////////////////////////////////////////////////////////////////////////////////
 
 // Mixin for quickly and consistently outputting the heading selector
+//    & > .heading, & > header > .heading {
 @mixin heading-selector {
-    & > .heading, & > header > .heading {
+    & > .heading {
         @content;
     }
 }
