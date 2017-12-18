@@ -225,7 +225,9 @@ $relative-font-sizing: true; // uses ems instead of pixels
         @include adjust-font-size-to($typography-font-size-base);
 
         /* We only want bottom margins on paragraphs */
+/* NO, we only want top margins on paragraphs
         @include margin-trailer;
+*/
     }
 }
 

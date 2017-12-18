@@ -106,6 +106,7 @@ $heading-after:" " !default;
         @include typography-heading-base;
     }
 
+/*
     @include heading-set-before-after($heading-before, $heading-after);
 
     .type {
@@ -121,17 +122,16 @@ $heading-after:" " !default;
     .title {
         @include heading-set-before-after($title-before, $title-after);
     }
+*/
 
+/*
     .type, .codenumber, .title {
-        /**
-         *  Hide the space after the last element,
-         * defer to .heading:after instead  XX obsolete comment
-         */
         &:last-child:after {
 //            display:none;
 //            content: ".\2009 ";
         }
     }
+*/
 
     &.hide-type {
         @include heading-hide-type();
