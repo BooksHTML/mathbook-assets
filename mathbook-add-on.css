@@ -76,6 +76,11 @@ pre {
     margin-top: 0;
 }
 
+.mathbook-content #index > .heading {
+    display: block;
+    text-align: center;
+}
+
 .mathbook-content article > .heading + p {
     margin-top: 0;
 }
@@ -94,26 +99,47 @@ pre {
 .mathbook-content article .heading {
     font-family: "PT Serif", "Times New Roman", Times, serif;
     font-weight: 700;
+    color: inherit;
 }
+.mathbook-content section .heading {
+    font-size: 1.75em;
+    line-height: 1.42857em;
+    margin-top: 0.71429em;
+    margin-bottom: 0;
+}
+.mathbook-content section section .heading {
+    font-size: 1.5em;
+    line-height: 1.25em;
+    margin-top: 0.83333em;
+    margin-bottom: 0;
+}
+
 .mathbook-content article .heading {
     font-size: 1.125em;
 }
 
+.mathbook-content .heading.hide-type > .type {
+    display: none;
+}
+/*
 .mathbook-content section > .heading > .type + .codenumber::before,
 .mathbook-content article > .heading > .type + .codenumber::before,
-.mathbook-content article > a > .heading > .type + .codenumber::before {
+.mathbook-content article > a > .heading > .type + .codenumber::before 
+*/
+.mathbook-content .heading > .type + .codenumber::before {
     content: " ";
 }
-.mathbook-content section > .heading > .codenumber:not(:empty) + .title::before,
+/*.mathbook-content section > .heading > .codenumber:not(:empty) + .title::before,
 .mathbook-content article > .heading > .codenumber:not(:empty) + .title::before,
-.mathbook-content article > a > .heading > .codenumber:not(:empty) + .title::before {
+.mathbook-content article > a > .heading > .codenumber:not(:empty) + .title::before 
+.mathbook-content section > .heading > .codenumber:not(:empty) + .title::before {
     content: ": \2009";
 }
-
-/*
-.mathbook-content section > .heading > .title:not(:empty):last-child::after,
 */
-.mathbook-content article > .heading > .title:not(:empty):last-child::after,
+.mathbook-content .heading > .codenumber:not(:empty) + .title::before {
+    content: " :\2009";
+}
+
 .mathbook-content article > .heading > .title:not(:empty):last-child::after {
     content: ".\2009";
 }
@@ -121,6 +147,10 @@ pre {
 .mathbook-content article > a > .heading > .title:last-child::after {
     content: ".";
 }
+
+/*
+ *  .hiddenproof
+ */
 
 /* knowlified proofs are in an article.hiddenproof */
 .mathbook-content .hiddenproof > .heading,   /* can't happen, because the a does the hiding? */
