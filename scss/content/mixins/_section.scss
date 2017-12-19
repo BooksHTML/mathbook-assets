@@ -33,7 +33,7 @@ $section-heading-size-level-3: h5 !default;
             margin-left:-3px;
         }
     }
-    @include margin-trailer($section-margin-lines);
+//    @include margin-trailer($section-margin-lines);
 }
 
 @mixin section-level($level) {

@@ -6,10 +6,10 @@ $figure-heading-after: ". " !default;
 
 figure {
 
-    & {
-        /* maintain vertical rhythym with line-height sized trailing margin */
-        @include margin-trailer;
-    }
+//    & {
+//        /* maintain vertical rhythym with line-height sized trailing margin */
+//        @include margin-trailer;
+//    }
 
     &.wrap {
         float: right;
@@ -49,7 +49,7 @@ figcaption {
 
         & {
             @include adjust-font-size-to($typography-font-size-base);
-            margin: 0 auto;
+//            margin: 0 auto;
             padding-left: 2em;
             @include margin-leader;
         }

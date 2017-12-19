@@ -49,7 +49,7 @@ section, .section-like {
          * within this context
          */
         font-size: $context-font-size;
-        @include margin-trailer(1, $context-font-size);
+//        @include margin-trailer(1, $context-font-size);
 
         .type, .codenumber {
             /* Chapter type prefix is smaller (as in LaTeX) */
@@ -77,7 +77,7 @@ section, .section-like {
 
         & {
             font-size: $context-font-size;
-            @include margin-trailer(1, $context-font-size);
+//            @include margin-trailer(1, $context-font-size);
         }
 
         @include heading-selector {
@@ -106,7 +106,7 @@ section, .section-like {
         text-align:center;
         @include typography-heading-size($title-font-size);
         // Needs a bit of extra space
-        @include margin-trailer(1, $title-font-size);
+//        @include margin-trailer(1, $title-font-size);
 
         .subtitle {
             display:block;
@@ -119,9 +119,9 @@ section, .section-like {
         }
     }
 
-    .header {
-        @include margin-trailer(2);
-    }
+//    .header {
+//       @include margin-trailer(2);
+//  }
 
     .contributors {
         text-align:center;
