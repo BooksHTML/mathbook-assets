@@ -6,6 +6,7 @@
     @include typography-heading-base();
 }
 
+/*
 h1, %h1 {
     @extend %heading-base;
     @include typography-heading-size(h1);
@@ -35,6 +36,7 @@ h6, %h6 {
     @extend %heading-base;
     @include typography-heading-size(h6);
 }
+*/
 
 /* deleted by David Farmer on 2/15/16 because it is too non-specific
  * and difficult to over-ride in MathJax
@@ -54,6 +56,7 @@ section h2 > a, li > a, li > %a, p > a, p> %a, .image-links > a {
     }
 }
 
+/*
 p, %p {
     @include typography-paragraph();
 }
@@ -65,22 +68,26 @@ blockquote .blockquote, %blockquote {
 address, .address, %address {
     @include typography-address();
 }
+*/
 
 // Unordered and Ordered lists
 // Adapted from twitter bootstrap
+/*
 ul,
 ol {
     // Set correct line-height
     @include adjust-font-size-to($typography-font-size-base);
     margin-top: 0;
-    @include margin-trailer;
-
-    ul,
-    ol {
-        margin-bottom: 0;
-    }
+//    @include margin-trailer;
+//
+//    ul,
+//    ol {
+//        margin-bottom: 0;
+//    }
 }
+*/
 
+/*
 // Unstyled keeps list items block level,
 // just removes default browser padding and list-style
 // Adapted from twitter bootstrap
@@ -88,7 +95,9 @@ ol {
     padding-left: 0;
     list-style: none;
 }
+*/
 
+/*
 // Inline turns list items into inline-block
 // Adapted from twitter bootstrap
 .list-inline {
@@ -104,7 +113,9 @@ ol {
         }
     }
 }
+*/
 
+/*
 // Description Lists
 // Adapted from twitter bootstrap
 dl {
@@ -121,3 +132,4 @@ dt {
 dd {
     margin-left: 0; // Undo browser default
 }
+*/

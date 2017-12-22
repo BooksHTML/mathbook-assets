@@ -51,8 +51,8 @@ section, .section-like {
         font-size: $context-font-size;
 //        @include margin-trailer(1, $context-font-size);
 
+/*
         .type, .codenumber {
-            /* Chapter type prefix is smaller (as in LaTeX) */
             @include typography-heading-size($heading-type-font-size);
         }
 
@@ -60,9 +60,9 @@ section, .section-like {
             display:block;
             @include typography-heading-size($heading-title-font-size);
 
-            /* Force a half-line leader */
             @include margin-leader(.5, $heading-title-font-size);
         }
+*/
     }
 
     /**

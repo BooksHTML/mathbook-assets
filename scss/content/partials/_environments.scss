@@ -15,10 +15,13 @@
     @include environment-base();
 }
 
+/*
 .definition-like {
     @extend %environment-base;
 }
+*/
 
+/*
 .theorem-like {
     @extend %environment-base;
 
@@ -26,19 +29,20 @@
         font-style: italic;
     }
 
-    .statement {
-
-        display:inline;
-
-        p:first-child {
-            display:inline;
-        }
-
-        &:last-child, &:last-of-type {
-            margin-bottom:0;
-        }
-    }
+//    .statement {
+//
+//        display:inline;
+//
+//        p:first-child {
+//            display:inline;
+//        }
+//
+//        &:last-child, &:last-of-type {
+//            margin-bottom:0;
+//        }
+//    }
 }
+*/
 
 .proof {
 
@@ -137,20 +141,20 @@
     @include environment-base();
 
     & {
-        @include heading-selector {
-            font-style: italic;
-            font-weight:normal;
+//        @include heading-selector {
+//            font-style: italic;
+//            font-weight:normal;
             /* It helps to have a little bit of extra space after proof */
-            margin-right:.25em;
-        }
+//            margin-right:.25em;
+//        }
 
-        position:relative;
+//        position:relative;
 
         /* Cut the border up into the top margin */
-        margin-top: -0.5em;
-        padding-top: 0;
+//        margin-top: -0.5em;
+//        padding-top: 0;
 
-        @include margin-trailer(1.0);
+//        @include margin-trailer(1.0);
 
         @media screen and (max-width: $screen-md-max) {
             /* Bring border out of the right margin */
@@ -172,19 +176,24 @@
 
 }
 
+/*
 .hiddenproof a>.heading {
     margin-top: 0px;
     margin-bottom: 0px;
 }
+*/
 
+/*
 .remark-like {
     @extend %environment-base;
 }
+*/
 
 .listitem {
     @extend %environment-base;
 }
 
+/*
 .example-like {
     @extend %environment-base;
 }
@@ -192,22 +201,14 @@
 .exercise-like {
     @extend %environment-base;
 }
+*/
 
 // TODO what is this? does it belong in content or ui?
 // TODO tie values into variables for vertical rythym and color
+
+/*
 .aside-like {
     @extend %environment-base;
-
-    // From addon
-    // -------------
- //   padding: 8px 15px 10px 15px;
- //   margin: 5px 0px 5px 10px;
- //   background-color: rgb(245,250,255);
- //   border: 2px solid rgb(220,235,250);
-//
- //   .aside-like {
- //       background-color: rgb(250,255,245);
- //       border: 1px dotted #aaa;
- //   }
 }
+*/
 

@@ -5,8 +5,10 @@ https://www.w3schools.com/cssref/css_default_values.asp
 
 /* the default margin for pre is "1em 0", so we over-ride
 so that we can set our own later */
-pre {
+.mathbook-content pre {
     margin: 0;
+    padding: 0;
+    border: none;
 }
 
 /* p and other block-level elements should have space at the top, and not the bottom */
@@ -16,11 +18,22 @@ pre {
 .mathbook-content p {
     margin-top: 1.25em;
     margin-bottom: 0;
+    line-height: 1.35;
 }
 .mathbook-content ol, .mathbook-content ul {
     margin-bottom: 0;
 }
+.mathbook-content figure {
+    margin-bottom: 0;
+}
 
+
+.mathbook-content .heading {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/*
 .mathbook-content section > article {
     margin-top: 1.25em;
     margin-bottom: 0;
@@ -29,7 +42,15 @@ pre {
 .mathbook-content p + article {
     margin-top: 1.25em;
 }
-.mathbook-content section > article.proof {
+*/
+.mathbook-content section article {
+    margin-top: 1.25em;
+}
+.mathbook-content section article + article,
+.mathbook-content section .posterior + article {
+    margin-top: 1.75em;
+}
+.mathbook-content section .proof {
     margin-top: 0.75em;
 }
 .mathbook-content .sagecell {
@@ -76,16 +97,22 @@ pre {
     margin-top: 0;
 }
 
+.mathbook-content #index > .heading {
+    display: block;
+    text-align: center;
+}
+
 .mathbook-content article > .heading + p {
     margin-top: 0;
 }
 /* go back and delete the header case when no longer needed */
-.mathbook-content section > .heading + p, .mathbook-content section > header + p,
-.mathbook-content section > .blob > p:first-child {
-    margin-top: 0;
+.mathbook-content section .heading + p, .mathbook-content section header + p,
+.mathbook-content section .blob > p:first-child,
+.mathbook-content section .permalink + p {
+    margin-top: 0.25em;
 }
-.mathbook-content section > .heading + article, .mathbook-content section > header + article {
-    margin-top: 0;
+.mathbook-content section .heading + article, .mathbook-content section header + article {
+    margin-top: 1em;
 }
 
 .mathbook-content a > .heading { display: inline;}
@@ -94,26 +121,73 @@ pre {
 .mathbook-content article .heading {
     font-family: "PT Serif", "Times New Roman", Times, serif;
     font-weight: 700;
+    color: inherit;
 }
-.mathbook-content article .heading {
-    font-size: 1.125em;
+/*
+.mathbook-content a article .heading {
+    font-weight: 500;
+}
+*/
+
+.mathbook-content section .heading {
+    font-size: 1.75em;
+    line-height: 1.42857em;
+    margin-top: 1em;
+}
+.mathbook-content section section .heading {
+    font-size: 1.5em;
+    line-height: 1.25em;
+    margin-top: 1em;
+}
+.mathbook-content section section section .heading {
+    font-size: 1.40em;
+    line-height: 1.15em;
+    margin-top: 0.75em;
 }
 
+
+.mathbook-content section article .heading, .mathbook-content section section article .heading {
+    font-size: 1.125em;
+    line-height: 1.125em;
+    margin-top: 0;
+    display: inline;
+}
+/* Currently only for Solution to example */
+.mathbook-content .posterior .heading {
+    font-weight: normal;
+    font-size: 1.125em;
+    line-height: 1.125em;
+    margin-top: 0;
+}
+/* trmporary: heading is not type */
+.mathbook-content section figcaption .heading, .mathbook-content section section figcaption .heading {
+    font-size: 1.125em;
+    line-height: 1.125em;
+    margin-top: 0;
+}
+
+.mathbook-content .heading.hide-type > .type {
+    display: none;
+}
+/*
 .mathbook-content section > .heading > .type + .codenumber::before,
 .mathbook-content article > .heading > .type + .codenumber::before,
-.mathbook-content article > a > .heading > .type + .codenumber::before {
+.mathbook-content article > a > .heading > .type + .codenumber::before 
+*/
+.mathbook-content .heading > .type + .codenumber::before {
     content: " ";
 }
-.mathbook-content section > .heading > .codenumber:not(:empty) + .title::before,
+/*.mathbook-content section > .heading > .codenumber:not(:empty) + .title::before,
 .mathbook-content article > .heading > .codenumber:not(:empty) + .title::before,
-.mathbook-content article > a > .heading > .codenumber:not(:empty) + .title::before {
+.mathbook-content article > a > .heading > .codenumber:not(:empty) + .title::before 
+.mathbook-content section > .heading > .codenumber:not(:empty) + .title::before {
     content: ": \2009";
 }
-
-/*
-.mathbook-content section > .heading > .title:not(:empty):last-child::after,
 */
-.mathbook-content article > .heading > .title:not(:empty):last-child::after,
+.mathbook-content section:not(.chapter) .heading > .codenumber:not(:empty) + .title::before {
+    content: " \2009";
+}
+
 .mathbook-content article > .heading > .title:not(:empty):last-child::after {
     content: ".\2009";
 }
@@ -122,20 +196,39 @@ pre {
     content: ".";
 }
 
+
+/*
+ * Contents of articles
+ */
+.mathbook-content section article .heading + p {
+    display: inline;
+}
+.mathbook-content section article.assemblage-like .heading + p {
+    display: block;
+}
+.mathbook-content section article.theorem-like p,
+.mathbook-content section article.theorem-like li {
+    font-style: italic;
+}
+
+/*
+ *  .hiddenproof
+ */
+
 /* knowlified proofs are in an article.hiddenproof */
 .mathbook-content .hiddenproof > .heading,   /* can't happen, because the a does the hiding? */
 .mathbook-content .hiddenproof > a > .heading {
     font-style: italic;
     font-weight: normal;
 }
-.mathbook-content .hiddenproof > .heading > .type::after,   /* can't happen, because the a does the hiding? */
+/*
 .mathbook-content .hiddenproof > a > .heading > .type::after {
     content: "";
 }
-.mathbook-content .hiddenproof > .heading:after,   /* can't happen, because the a does the hiding? */
 .mathbook-content .hiddenproof > a > .heading:after {
     content: ".";
 }
+*/
 
 
 
@@ -438,33 +531,38 @@ body > a.assistive:focus {
         clear:both;
 } 
 
-.mathbook-content figure figcaption {
+.mathbook-content figcaption {
     font-weight: normal;
 }
 
-.mathbook-content figure figcaption {
+.mathbook-content figcaption {
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
-    font-size: 100%;
 /*  Commenting this out because the initial letter of some captions were cut off
     text-indent: -30px;
 */
 }
 
-.mathbook-content figure figcaption .heading, .mathbook-content figure figcaption .codenumber {
+/* delete the figcaption .heading once refactoring is complete */
+.mathbook-content figcaption .heading,
+.mathbook-content section figcaption .heading,
+.mathbook-content section figcaption .codenumber,
+.mathbook-content section figcaption .type {
     font-weight: 700;
+    font-size: inherit;
 }
 
-.mathbook-content figure figcaption .heading:after {
+.mathbook-content figcaption .heading + .codenumber::before,
+.mathbook-content figcaption .type + .codenumber::before {
     content: " ";
 }
 
-.mathbook-content figure figcaption .codenumber:after {
+.mathbook-content figcaption .codenumber:after {
     content: ".\2002";  /* en space */
 }
 
-.mathbook-content figure figcaption .codenumber:last-child:after {
+.mathbook-content figcaption .codenumber:last-child:after {
     display: inline;
     content: ". ";
 }
@@ -577,7 +675,6 @@ h2:last-child {
 
 .mathbook-content h6 {
     line-height: 1em;
-    margin-bottom: 0.5em;
 }
 
 .mathbook-content .sidebyside > p, .mathbook-content .sidebyside > figure, .mathbook-content .sidebyside > img, .mathbook-content .sidebyside > table, .mathbook-content .sidebyside > tabular, .mathbook-content .sidebyside > .paragraphs {
@@ -590,10 +687,9 @@ h2:last-child {
 }
 
 .mathbook-content .sidebyside figcaption {
-    font-weight: normal;
     padding-left: 1em; 
     padding-right: 0;
-    padding-bottom: 1.5em;
+    padding-bottom: 0;
     margin: 0.75em 0 0 0;
 }
 
@@ -632,7 +728,7 @@ h2:last-child {
 }
 
 .mathbook-content .sidebyside {
-    margin-bottom: 1em;
+    margin-bottom: 0;
 }
 .mathbook-content .sidebyside p:only-child {
     margin-bottom: 0;
@@ -928,7 +1024,7 @@ table tr td {
 }
 
 .mathbook-content table + p {
-    margin-top: 20px;
+    margin-top: 1.5em;
 }
 
 .mathbook-content table tr td span.decimal {
@@ -944,26 +1040,20 @@ table tr td {
     margin-bottom: 0;
 }
 
-.mathbook-content .hidden-knowl-wrapper .hiddenproof  {
-    margin-top: 0;
+.mathbook-content .hidden-knowl-wrapper .hiddenproof,
+.mathbook-content article.hiddenproof  {
+    margin-top: 0.25em;
 }
 
 .mathbook-content .hidden-knowl-wrapper article {
     display: inline;
 }
 
-/* things like knowlified examples */
-.mathbook-content section > .hidden-knowl-wrapper {
-    margin-bottom: 1em;
-}
-
-.mathbook-content  .theorem-like + .hidden-knowl-wrapper {
-    margin-top: -0.5em;
-}   
-
+/*
 .mathbook-content .hiddenproof > .heading::after {
     content: "."
 }
+*/
 
 .amathbook-content figure.figure-like {
     overflow: auto;
@@ -1029,6 +1119,7 @@ table tr td {
     margin-top: 0.5em;
 }
 
+/* this should be obsolete, because the permalink is outside of the .heading */
 .mathbook-content section .heading a.permalink {
     opacity: 0.1;
     font-size: 70%;
@@ -1535,9 +1626,11 @@ a.mjx-svg-href  {
 .mathbook-content .latex-logo .E {vertical-align:-.5ex; text-transform: uppercase;
          margin-left: -.18em; margin-right: -.12em}
 
+/*
 .mathbook-content .posterior {
     margin-bottom: 1.25em;
 }
+*/
 
 .mathbook-content .fillin {
     display: inline-block;
@@ -1589,12 +1682,14 @@ a.mjx-svg-href  {
     margin-left: 0;
 }
 
+.mathbook-content article + .hidden-knowl-wrapper {
+    margin-top: 1em;
+}
+.mathbook-content article + .posterior {
+    margin-top: 0.5em;
+}
 .mathbook-content .exercisegroup article + .hidden-knowl-wrapper {
     margin-left: 4em;
-/*
-    margin-top: 0;
-    margin-bottom: 1em;
-*/
 }
 
 /* make it look like a list, and have entra indenting when already more indented */
@@ -1725,10 +1820,6 @@ a.mjx-svg-href  {
     font-family: "Inconsolata", monospace;
 }
 
-.main .mathbook-content section  article .heading {
-    line-height: 1.125em;
-}
-
 .mathbook-content .sagecell_sessionOutput pre {
     font-family: 'Inconsolata', monospace;
 }
@@ -1769,30 +1860,41 @@ a.mjx-svg-href  {
     font-style: oblique;
 }
 
+/*
 .mathbook-content .definition-like > .heading .type:last-child:after, .mathbook-content .theorem-like > .heading .type:last-child:after, .mathbook-content .remark-like > .heading .type:last-child:after, .mathbook-content .example-like > .heading .type:last-child:after, .mathbook-content .exercise-like > .heading .type:last-child:after, .mathbook-content .definition-like > .heading .codenumber:last-child:after, .mathbook-content .theorem-like > .heading .codenumber:last-child:after, .mathbook-content .remark-like > .heading .codenumber:last-child:after, .mathbook-content .example-like > .heading .codenumber:last-child:after, .mathbook-content .exercise-like > .heading .codenumber:last-child:after, .mathbook-content .definition-like > .heading .title:last-child:after, .mathbook-content .theorem-like > .heading .title:last-child:after, .mathbook-content .remark-like > .heading .title:last-child:after, .mathbook-content .example-like > .heading .title:last-child:after, .mathbook-content .exercise-like > .heading .title:last-child:after, .mathbook-content .definition-like > header > .heading .type:last-child:after, .mathbook-content .theorem-like > header > .heading .type:last-child:after, .mathbook-content .remark-like > header > .heading .type:last-child:after, .mathbook-content .example-like > header > .heading .type:last-child:after, .mathbook-content .exercise-like > header > .heading .type:last-child:after, .mathbook-content .definition-like > header > .heading .codenumber:last-child:after, .mathbook-content .theorem-like > header > .heading .codenumber:last-child:after, .mathbook-content .remark-like > header > .heading .codenumber:last-child:after, .mathbook-content .example-like > header > .heading .codenumber:last-child:after, .mathbook-content .exercise-like > header > .heading .codenumber:last-child:after, .mathbook-content .definition-like > header > .heading .title:last-child:after, .mathbook-content .theorem-like > header > .heading .title:last-child:after, .mathbook-content .remark-like > header > .heading .title:last-child:after, .mathbook-content .example-like > header > .heading .title:last-child:after, .mathbook-content .exercise-like > header > .heading .title:last-child:after {  
     content: ".\2009 ";
 }
+*/
 
-.mathbook-content .aside-like > .heading .type:last-child:after,
-.mathbook-content .aside-like > .heading .codenumber:last-child:after,
-.mathbook-content .aside-like > .heading .title:last-child:after,
-.mathbook-content .aside-like > header > .heading .type:last-child:after,
-.mathbook-content .aside-like > header > .heading .codenumber:last-child:after,
-.mathbook-content .aside-like > header > .heading .title:last-child:after {
+.mathbook-content article > .heading .type:last-child::after,
+.mathbook-content article > .heading .codenumber:last-child::after,
+.mathbook-content article > .heading .title:not(:empty):last-child::after {
+    content: ".\2009 ";
+}
+.mathbook-content .aside-like > .heading .type:last-child::after,
+.mathbook-content .aside-like > .heading .codenumber:last-child::after,
+.mathbook-content .aside-like > .heading .title:last-child::after {
     content: ":\2009 ";
 }
 
-.mathbook-content .aside-like > .heading .title:empty:after {
+.mathbook-content .aside-like > .heading .title:empty::after {
     content: "";
 }
 
 /* need sample use case for these */
+/*
 .mathbook-content a  .definition-like > .heading .type:last-child:after, .mathbook-content a  .theorem-like > .heading .type:last-child:after, .mathbook-content a  .remark-like > .heading .type:last-child:after, .mathbook-content a  .example-like > .heading .type:last-child:after, .mathbook-content a  .exercise-like > .heading .type:last-child:after, .mathbook-content a  .definition-like > .heading .codenumber:last-child:after, .mathbook-content a  .theorem-like > .heading .codenumber:last-child:after, .mathbook-content a  .remark-like > .heading .codenumber:last-child:after, .mathbook-content a  .example-like > .heading .codenumber:last-child:after, .mathbook-content a  .exercise-like > .heading .codenumber:last-child:after, .mathbook-content a  .definition-like > .heading .title:last-child:after, .mathbook-content a  .theorem-like > .heading .title:last-child:after, .mathbook-content a  .remark-like > .heading .title:last-child:after, .mathbook-content a  .example-like > .heading .title:last-child:after, .mathbook-content a  .exercise-like > .heading .title:last-child:after, .mathbook-content a  .definition-like > header > .heading .type:last-child:after, .mathbook-content a  .theorem-like > header > .heading .type:last-child:after, .mathbook-content a  .remark-like > header > .heading .type:last-child:after, .mathbook-content a  .example-like > header > .heading .type:last-child:after, .mathbook-content a  .exercise-like > header > .heading .type:last-child:after, .mathbook-content a  .definition-like > header > .heading .codenumber:last-child:after, .mathbook-content a  .theorem-like > header > .heading .codenumber:last-child:after, .mathbook-content a  .remark-like > header > .heading .codenumber:last-child:after, .mathbook-content a  .example-like > header > .heading .codenumber:last-child:after, .mathbook-content a  .exercise-like > header > .heading .codenumber:last-child:after, .mathbook-content a  .definition-like > header > .heading .title:last-child:after, .mathbook-content a  .theorem-like > header > .heading .title:last-child:after, .mathbook-content a  .remark-like > header > .heading .title:last-child:after, .mathbook-content a  .example-like > header > .heading .title:last-child:after, .mathbook-content a  .exercise-like > header > .heading .title:last-child:after, {  
     content: "";
 }
+*/
 
 /* FOr exercises, etc, hidden in knowls */
+/*
 .mathbook-content a  .definition-like > .heading .codenumber:not(:empty)::after, .mathbook-content a  .theorem-like > .heading .codenumber:not(:empty)::after, .mathbook-content a  .remark-like > .heading .codenumber:not(:empty)::after, .mathbook-content a  .example-like > .heading .codenumber:not(:empty)::after, .mathbook-content a  .exercise-like > .heading .codenumber:not(:empty)::after, .mathbook-content a  .theorem-like > header > .heading .codenumber:not(:empty)::after, .mathbook-content a  .remark-like > header > .heading .codenumber:not(:empty)::after, .mathbook-content a  .example-like > header > .heading .codenumber:not(:empty)::after, .mathbook-content a  .exercise-like > header > .heading .codenumber:not(:empty)::after { 
+    content: ": \2009";
+}
+*/
+.mathbook-content a article > .heading .codenumber:not(:empty)::after {
     content: ": \2009";
 }
 
@@ -1815,7 +1917,7 @@ a.mjx-svg-href  {
 }
 
 
-.mathbook-content .solutions > a, .mathbook-content .solutions > a:hover, .mathbook-content .solutions > a.active {
+.mathbook-content .solutions a, .mathbook-content .solutions a:hover, .mathbook-content .solutions a.active {
     display: inline-block;
     margin-right: 1em;
 }
@@ -1854,7 +1956,10 @@ body, html body { background: #fff; }
 figure {
     margin-top: 10px;
 }
-.mathbook-content figure + figure {
+.mathbook-content figure + figure,
+.mathbook-content figure + .sidebyside,
+.mathbook-content .sidebyside + .sidebyside,
+.mathbook-content .sidebyside + figure {
     padding-top: 1.0em;
 }
 
@@ -1998,17 +2103,23 @@ sup [knowl]:hover {
     padding: 0px 0px 0px 3px;
 }
 
+/*
 .mathbook-content .proof > .heading:after {
     content: ".";
 }
+*/
 
-figure pre.prettyprint {
+.mathbook-content pre.prettyprint,
+.mathbook-content pre.plainprint {
     margin-top: 0;
     padding-left: 15px;
     border-left: 1px solid #aaa;
+    font-size: 110%;
+/* preveiously turned off the border and padding from pretty.css */
 }
 
-figure pre.prettyprint:before {
+.mathbook-content pre.prettyprint:before,
+.mathbook-content pre.plainprint:before {
     content:'';
     border-top: 1px solid #aaa;
     display: block;
@@ -2026,10 +2137,10 @@ figure pre.prettyprint:before {
 }
 /* List 12.3 at http://mathbook.pugetsound.edu/examples/sample-article/html/section-12.html
  [[put somethign here]]
- */
 .mathbook-content article.example-like + .posterior {
     margin-top: -0.75em;
 }
+ */
 
 .mathbook-content article.proof > *:last-child {
     margin-bottom: 0;
@@ -2465,7 +2576,7 @@ body.sidebar-left-closed .searchwrapper {
     border: none;
 }
 
-.times-sign {
+.mathbook-content .times-sign {
     font-size: larger;
     vertical-align: -0.15ex;
 }
@@ -2603,3 +2714,8 @@ and condider having this replace line 3338 of the general code (which uses .head
 .mathbook-content meta {
     display: none;
 }
+
+#masthead .banner .container a img {
+    font-size: 25%;
+}
+
