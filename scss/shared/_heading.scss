@@ -98,19 +98,10 @@ $heading-title-after: " " !default;
         @include typography-heading-base;
     }
 
-    @include heading-set-before-after($heading-before, $heading-after);
-
-    .type {
-        @include heading-set-before-after($type-before, $type-after);
-    }
-
-    .codenumber:not(:empty) {
-        @include heading-set-before-after($codenumber-before, $codenumber-after);
-    }
-
-    .title {
-        @include heading-set-before-after($title-before, $title-after);
-    }
+    // @include heading-set-before-after($heading-before, $heading-after);
+    // .type { @include heading-set-before-after($type-before, $type-after); }
+    // .codenumber:not(:empty) { @include heading-set-before-after($codenumber-before, $codenumber-after); }
+    // .title { @include heading-set-before-after($title-before, $title-after); }
 
     &.hide-type {
         @include heading-hide-type;

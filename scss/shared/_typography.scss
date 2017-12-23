@@ -158,7 +158,8 @@ $typography-code-scrollable-max-height: 340px !default;
         @include adjust-font-size-to($typography-font-size-base);
 
         // We only want bottom margins on paragraphs
-        @include margin-trailer;
+        // NO, we only want top margins on paragraphs
+        // @include margin-trailer;
     }
 }
 
