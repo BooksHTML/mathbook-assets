@@ -12,7 +12,7 @@ $environment-heading-after: "" !default;
         @include heading-base($heading-after: $environment-heading-after);
 
         // Adjust sizing of heading based on font size.
-        @include typography-heading-size($environment-heading-font-size);
+        // @include typography-heading-size($environment-heading-font-size);
 
         // TODO should we move links into heading-base?
 
@@ -32,5 +32,5 @@ $environment-heading-after: "" !default;
     @include heading-force-inline;
 
     // Add a bottom margin of one line-height.
-    @include margin-trailer(1);
+    // @include margin-trailer(1);
 }

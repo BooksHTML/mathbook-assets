@@ -146,14 +146,14 @@ $typography-code-scrollable-max-height: 340px !default;
 
     @include adjust-font-size-to($font-size);
     @include margin-leader(1, $font-size);
-    @include margin-trailer(0.5, $font-size);
+    // @include margin-trailer(0.5, $font-size);
 }
 
 // Paragraph styling
 @mixin typography-paragraph {
     & {
         // Reset margins
-        margin: 0;
+        // margin: 0;
 
         @include adjust-font-size-to($typography-font-size-base);
 
@@ -166,7 +166,7 @@ $typography-code-scrollable-max-height: 340px !default;
 // Special styling for a lead-in paragraph
 @mixin typography-paragraph-lead {
     & {
-        margin: 0;
+        // margin: 0;
         @include adjust-font-size-to(floor($typography-font-size-base*1.15));
         @include margin-trailer;
         font-weight: 200;
@@ -240,7 +240,7 @@ $typography-code-scrollable-max-height: 340px !default;
 ) {
 
     & {
-        margin: 0 1px;
+        // margin: 0 1px;
         @include adjust-font-size-to(0.9 * $typography-font-size-base);
         white-space: nowrap;
         color: $color;
@@ -258,7 +258,7 @@ $typography-code-scrollable-max-height: 340px !default;
 @mixin typography-address {
     & {
         padding: 0;
-        margin: 0;
+        // margin: 0;
         line-height: inherit;
         font-style: inherit;
     }
