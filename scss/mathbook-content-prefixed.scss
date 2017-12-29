@@ -18,10 +18,12 @@
 
 @include typography-google-fonts-import-once();
 
+/*
 .mathbook-content {
     @include typography-base();
     @import "content/content";
 }
+*/
 
 /*******************************************************************************
  * END MATHBOOK CONTENT PREFIXED

@@ -53,6 +53,7 @@ $typography-code-border-color: #ddd !default;
 $typography-code-border-radius: .2em !default;
 $typography-code-scrollable-max-height:   340px !default;
 
+/*
 // GOOGLE FONTS
 $typography-google-fonts-url-base:"https://fonts.googleapis.com/css" !default;
 $typography-google-fonts-options:
@@ -60,7 +61,8 @@ $typography-google-fonts-options:
 $typography-google-fonts-url:
     $typography-google-fonts-url-base + $typography-google-fonts-options;
 // Flag for whether or not to import the google font url in the output CSS
-$typography-should-import-google-fonts: true !default;
+*/
+$typography-should-import-google-fonts: false !default;
 
 // Compass Vertical Rhythm
 //------------------------------------------------------------------------------

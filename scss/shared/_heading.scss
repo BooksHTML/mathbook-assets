@@ -148,6 +148,7 @@ $heading-after:" " !default;
 
 // Force the heading to appear inline with the following paragraph
 @mixin heading-force-inline() {
+/*
     @include heading-selector {
         display:inline;
 
@@ -155,22 +156,22 @@ $heading-after:" " !default;
             display:inline;
 
             &:after {
-                /* Restore the inline paragraph's margin */
                 content: "";
                 display:block;
                 @include margin-trailer;
             }
 
             &:last-child:after {
-                /* Restore the inline paragraph's margin */
                 margin-bottom: 0;
             }
         }
     }
+*/
 }
 
 // Force the heading back to block
 @mixin heading-force-block() {
+/*
     @include heading-selector {
         display:block;
 
@@ -182,4 +183,5 @@ $heading-after:" " !default;
             }
         }
     }
+*/
 }

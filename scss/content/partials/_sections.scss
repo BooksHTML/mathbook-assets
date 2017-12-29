@@ -48,7 +48,7 @@ section, .section-like {
          * We use font-size-base so that ems are relative to base font size
          * within this context
          */
-        font-size: $context-font-size;
+//        font-size: $context-font-size;
 //        @include margin-trailer(1, $context-font-size);
 
 /*
@@ -73,6 +73,7 @@ section, .section-like {
      * The main difference is that the margin is applied to the header
      * element instead of the heading element.
      */
+/*
     & > header {
 
         & {
@@ -83,7 +84,6 @@ section, .section-like {
         @include heading-selector {
             .title {
                 display:block;
-                /* The margin goes on the header element instead */
                 margin-bottom:0;
             }
         }
@@ -96,6 +96,7 @@ section, .section-like {
             &:before { content: "By "; }
         }
     }
+*/
 }
 
 .frontmatter, .book {
