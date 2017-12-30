@@ -3,9 +3,9 @@
 @import "../../shared/_heading.scss";
 @import "../../shared/_knowl.scss";
 
-$environment-heading-font-size: $typography-font-size-h5 !default;
+// $environment-heading-font-size: $typography-font-size-h5 !default;
 // $environment-heading-after: ".\2009 " !default;
-$environment-heading-after: "" !default;
+// $environment-heading-after: "" !default;
 
 // Defaults for environments
 @mixin environment-base {
@@ -24,11 +24,6 @@ $environment-heading-after: "" !default;
             @include heading-link();
         }
 
-        /* Support knowl links in headings */
-        *[knowl] {
-            @include knowl-link($font-type:serif);
-            margin-left:-3px;
-        }
     }
 
     // Default to inline heading
