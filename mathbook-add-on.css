@@ -1,4 +1,16 @@
 
+@import url("https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic|Open+Sans:400italic,700italic,400,700");
+
+body {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: inherit;
+}
+
 /* CSS defult values:
 https://www.w3schools.com/cssref/css_default_values.asp
 */
@@ -97,7 +109,7 @@ so that we can set our own later */
     margin-top: 0;
 }
 
-.mathbook-content #index > .heading {
+.mathbook-content .frontmatter > .heading {
     display: block;
     text-align: center;
 }
@@ -184,7 +196,10 @@ so that we can set our own later */
     content: ": \2009";
 }
 */
+/*
 .mathbook-content section:not(.chapter) .heading > .codenumber:not(:empty) + .title::before {
+*/
+.mathbook-content section .heading > .codenumber:not(:empty) + .title::before {
     content: " \2009";
 }
 
@@ -216,21 +231,168 @@ so that we can set our own later */
  */
 
 /* knowlified proofs are in an article.hiddenproof */
-.mathbook-content .hiddenproof > .heading,   /* can't happen, because the a does the hiding? */
+/* .mathbook-content .hiddenproof .heading,   ???? can't happen, because the a does the hiding? */
 .mathbook-content .hiddenproof > a > .heading {
     font-style: italic;
     font-weight: normal;
 }
-/*
 .mathbook-content .hiddenproof > a > .heading > .type::after {
-    content: "";
+    content: ".";
 }
+/*
 .mathbook-content .hiddenproof > a > .heading:after {
     content: ".";
 }
 */
 
+/*
+  main knowls style
+*/
 
+/*
+[knowl], [knowl]:hover, [knowl].active {
+*/
+[knowl] {
+    display: inline;
+    position: relative;
+    cursor: pointer;
+    color: #9c2310;
+    padding: 0px 2px 0px 2px;
+    margin: 0;
+    text-decoration: none;
+    margin-bottom: 1px;
+    margin-bottom: 0;
+    font-weight: 500;
+    white-space: nowrap;
+    border-bottom: none;
+    -moz-border-radius-topleft: 3px;
+    -webkit-border-top-left-radius: 3px;
+    border-top-left-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    -webkit-border-top-right-radius: 3px;
+    border-top-right-radius: 3px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    -webkit-transition-property: background-color;
+    -moz-transition-property: background-color;
+    -o-transition-property: background-color;
+    transition-property: background-color;
+    -webkit-transition-duration: 0ms;
+    -moz-transition-duration: 0ms;
+    -o-transition-duration: 0ms;
+    transition-duration: 0ms;
+}
+
+[knowl]:hover, [knowl]:active, [knowl].active {
+    color: #8a1200;
+    background: #ffedeb;
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+[knowl]::after, [knowl]:hover::after, [knowl].active::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 1px;
+    right: 2.4px;
+    left: 2.4px;
+    border-bottom: 1px dotted #9c2310;
+    -webkit-transition-property: left, right;
+    -moz-transition-property: left, right;
+    -o-transition-property: left, right;
+    transition-property: left, right;
+    -webkit-transition-duration: 0ms;
+    -moz-transition-duration: 0ms;
+    -o-transition-duration: 0ms;
+    transition-duration: 0ms;
+    z-index: 0;
+}
+
+.knowl-error {
+   color: red;
+   border-bottom: 0;
+}
+.knowl-output {
+    background: #f5f5ff;
+    border-top: 10px solid #ddf;
+    border-left: 10px solid #ddf;
+    border-right: 10px solid #ddf;
+    border-bottom: 10px solid #ddf;
+    border-top-left-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-right-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    border-top-right-radius: 10px;
+    -moz-border-radius-topright: 10px;
+    display: none;
+    display: none;
+    padding: 0px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+
+}
+.knowl-output .knowl-output, .knowl-output .knowl-output.loading {
+    margin-left: 0;
+    margin-right: 0;
+}
+.knowl-output .knowl-output {
+    border-width: 6px;
+    background: #fffff5;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    margin-bottom: -3px;
+    margin-left: -7px;
+    margin-right: -7px;
+}
+.knowl-output .knowl-output .knowl-output {
+    background: #fff5fe;
+}
+.knowl-output .knowl-output .knowl-output .knowl-output {
+    background: #ffffff;
+}
+.knowl-footer {
+  position: relative;
+  bottom: -9px;
+  font-size: x-small;
+  background: #ddf;
+  color: grey;
+  padding: 0 0 0 12px;
+  margin:  -10px 0 0 0;
+}
+.knowl-footer a {
+  color: #006;
+}
+.knowl-footer a:hover {
+  background: none;
+  color: #88f;
+}
+.knowl-footer:after {
+    content: "\2002";
+}
+
+.knowl-output .knowl-output .knowl-footer {
+  bottom: -5px;
+  margin:  -5px 0 0 0;
+}
+
+.knowl-output + .knowl-output {
+    margin-top: 0;
+}
+.knowl-content {
+    padding: 10px;
+    padding-bottom: 7px;
+}
+.knowl-content > *:first-child {
+    margin-top: 0;
+}
 
 /* this needs to be first, because we want any background to
    over-rule this.
@@ -349,6 +511,14 @@ body > a.assistive:focus {
     transition: top .1s ease-in, background .5s linear;
 }
 
+
+#masthead .banner {
+    border-bottom: 1px solid #d4d4d4;
+    border-top: 1px solid transparent;
+    overflow: hidden;
+    padding-top: 0.625em;
+    padding-bottom: 1.125em;
+}
 
 /* newer, small top nav buttons */
 #masthead.smallbuttons #primary-navbar .navbar-top-buttons .toolbar-align-right .toolbar-item-middle {
@@ -1041,8 +1211,8 @@ table tr td {
 }
 
 .mathbook-content .hidden-knowl-wrapper .hiddenproof,
-.mathbook-content article.hiddenproof  {
-    margin-top: 0.25em;
+.mathbook-content section > article.hiddenproof  {
+    margin-top: 0.3em;
 }
 
 .mathbook-content .hidden-knowl-wrapper article {
@@ -1081,10 +1251,6 @@ table tr td {
     padding-top: 0;
 }
 
-.mathbook-content .knowl p:last-of-type {
-    margin-bottom: 0;
-}
-
 /* not sure where this was being used, but it made short knowls
  * look bad, like the hint here:
  * SAFurtherReading.html
@@ -1093,14 +1259,16 @@ table tr td {
 }
 */
 
-.mathbook-content .knowl-output {
-    margin-bottom: 0;
-}
-
+/*
 .mathbook-content tt {
     font-size: 1.4em;
+    font-size: 110%;
     margin-left: 0.2em;
     margin-right: 0.2em;
+}
+*/
+.mathbook-content a > tt {
+    font-size: 110%;
 }
 
 .mathbook-content section .videolink a:link {
@@ -1404,7 +1572,8 @@ table tr td {
     display: block;
     font-size: 85%;
     text-align: right;
-    margin-bottom: -1.0em;
+/*    margin-bottom: -1.0em;
+*/
 }
 
 .mathbook-content .terminology {
@@ -1548,13 +1717,11 @@ table tr td {
 }
 */
 
+/*
 .mathbook-content .knowl .definition-like:last-child, .mathbook-content .knowl .theorem-like:last-child, .mathbook-content .knowl .remark-like:last-child, .mathbook-content .knowl .example-like:last-child, .mathbook-content .knowl .exercise-like:last-child, .mathbook-content .knowl .objectives:last-child {
     margin-bottom: 0.3em;
 }
-
-.mathbook-content a {
-    color: inherit;
-}
+*/
 
 /* to stop things being blue when rendering MathJax with SVG */
 a.mjx-svg-href  {
@@ -1593,7 +1760,10 @@ a.mjx-svg-href  {
 }
 
 /* to allow big math in knowl links */
+/*
 .mathbook-content .hidden-knowl-wrapper a .mjx-chtml {
+*/
+.mathbook-content a .mjx-chtml {
     z-index: 1;
     background: #fff;
 }
@@ -1718,10 +1888,6 @@ a.mjx-svg-href  {
     margin-left: 1.5em;
 }
 
-.mathbook-content article.exercise-like .hint [knowl]{
-    font-weight: lighter;
-}
-
 /*
 .mathbook-content .exercise-like .hint {
     display: block;
@@ -1775,10 +1941,6 @@ a.mjx-svg-href  {
     margin-top: -0.75em;
 }
 
-.mathbook-content article.example-like .hint [knowl]{
-    font-weight: lighter;
-}
-
 
 .mathbook-content .exercisegroup .exercisegroup-exercises.cols2, .mathbook-content .exercisegroup .exercisegroup-exercises.cols3, .mathbook-content .exercisegroup .exercisegroup-exercises.cols4, .mathbook-content .exercisegroup .exercisegroup-exercises.cols5, .mathbook-content .exercisegroup .exercisegroup-exercises.cols6 {
     width: 100%;
@@ -1818,6 +1980,23 @@ a.mjx-svg-href  {
 .mathbook-content .code-block,
 .mathbook-content .console {
     font-family: "Inconsolata", monospace;
+}
+.mathbook-content .code-inline {
+    font-size: 1em;
+/*    line-height: 1.38889em;
+*/
+    white-space: nowrap;
+    color: inherit;
+    background: #eeeeee;
+    border: 1px solid #dddddd;
+    padding: 0.0625em 0.25em;
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+    -webkit-border-radius: 0.2em;
+    -moz-border-radius: 0.2em;
+    -ms-border-radius: 0.2em;
+    -o-border-radius: 0.2em;
+    border-radius: 0.2em;
 }
 
 .mathbook-content .sagecell_sessionOutput pre {
@@ -2474,6 +2653,23 @@ article.list .heading .codenumber + .title:before {
     margin-top: 3ex;
 }
 
+.mathbook-content .frontmatter .contributors, .mathbook-content .book .contributors {
+    text-align: center;
+    font-style: normal;
+}
+
+.mathbook-content .frontmatter > .heading .title, .mathbook-content .book > .heading .title {
+    font-size: 1.3em;
+}
+.mathbook-content .frontmatter > .heading .subtitle, .mathbook-content .book > .heading .subtitle {
+    display: block;
+    font-weight: normal;
+    color: #666666;
+    font-size: 0.875em;
+    line-height: 1.42857em;
+    margin-top: 0.35714em;
+}
+
 
 .searchwrapper {
     max-width: 900px;
@@ -2630,9 +2826,7 @@ http://mathbook.pugetsound.edu/examples/sample-article/html/interesting-corollar
     margin-bottom: 0.25em;
 }
 */
-.mathbook-content .conclusion p:last-child {
-    margin-bottom: 0.25em;
-}
+
 /* not sure about these two.  there may be bad side-effects */
 /*
 .mathbook-content .example-like p {
@@ -2715,7 +2909,10 @@ and condider having this replace line 3338 of the general code (which uses .head
     display: none;
 }
 
-#masthead .banner .container a img {
-    font-size: 25%;
-}
+/*
+To delete when moving to pretextbook.org:
+
+all .hidden-knowl-wrapper
+*/
+
 
