@@ -26,9 +26,9 @@ $masthead-font-family: $typography-heading-font-family;
     @include box-shadow(none);
 }
 
+/*
 .banner {
     border-bottom:1px solid darken($masthead-bg-color, 15%);
-    /* to ensure children's margin-top works */
     border-top:1px solid transparent;
 
     @include clearfix();
@@ -40,6 +40,7 @@ $masthead-font-family: $typography-heading-font-family;
         padding-right:$ui-content-margin-xs;
     }
 }
+*/
 
 #title-container, .title-container {
     font-size: 1em;

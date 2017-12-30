@@ -24,12 +24,14 @@
 
 /**
  * Reset HTML to iron out browser inconsistencies
- */
 @include reset-html5();
+ */
 
+/*
 body {
     @include typography-base();
 }
+*/
 
 // Import modules
 @import "ui/ui";

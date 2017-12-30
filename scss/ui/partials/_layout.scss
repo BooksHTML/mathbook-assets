@@ -43,15 +43,19 @@ body {
         max-width: $content-outer-width + $ui-sidebar-left-width;
     }
 
+/*
     &.has-sidebar-right, .has-sidebar-right & {
         max-width:none;
     }
+*/
 
+/*
     &.layout-centered,
     .layout-centered &,
     .has-sidebar-left.has-sidebar-right & {
         max-width: none;
     }
+*/
 }
 
 /**
@@ -180,7 +184,7 @@ body {
 /**
  * Container for the main focus/purpose of the page.
  */
-#main, .main {
+.main {
 
     // Main styling should go here.
     @import "./main";
@@ -219,11 +223,13 @@ body {
         margin: $ui-content-margin;
     }
 
+/*
     .layout-centered & {
         margin: $ui-content-margin auto;
     }
+*/
 
-    &, .layout-left &, .layout-centered & {
+    &, .layout-left & { /*, .layout-centered & { */
 
         /**
          * When the content is cramped,

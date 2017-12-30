@@ -52,12 +52,14 @@
         margin: $ui-content-margin;
     }
 
+/*
     .layout-centered & {
         margin: $ui-content-margin auto;
     }
+*/
 
 
-    &, .layout-left &, .layout-centered & {
+    &, .layout-left & { /*, .layout-centered & { */
 
         /* When the content is cramped */
         @include sliding-sidebars-media-cramped-content(
