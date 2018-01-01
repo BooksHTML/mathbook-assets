@@ -27,11 +27,6 @@ $section-heading-size-level-3: h5 !default;
             @include heading-link();
         }
 
-        /* Support knowl links in headings */
-        *[knowl] {
-            @include knowl-link($font-type: serif);
-            margin-left:-3px;
-        }
     }
 //    @include margin-trailer($section-margin-lines);
 }

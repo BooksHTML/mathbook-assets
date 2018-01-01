@@ -1998,6 +1998,12 @@ a.mjx-svg-href  {
     -o-border-radius: 0.2em;
     border-radius: 0.2em;
 }
+.mathbook-content .title .code-inline {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
 
 .mathbook-content .sagecell_sessionOutput pre {
     font-family: 'Inconsolata', monospace;
