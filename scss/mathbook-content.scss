@@ -17,9 +17,11 @@
 // Import the google fonts
 @include typography-google-fonts-import-once();
 
+/*
 body {
     @include typography-base();
 }
+*/
 
 @import "content/content";
 

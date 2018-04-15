@@ -82,14 +82,6 @@ $sliding-sidebars-loaded-class: "mathbook-loaded" !default;
     .has-sidebar-left {
         @include transition-property(margin-left, left);
     }
-
-    .has-sidebar-right {
-        @include transition-property(margin-right, right);
-    }
-
-    .has-sidebar-left.has-sidebar-right {
-        @include transition-property(margin-left, margin-right,left,right);
-    }
 }
 
 // Main side styles
@@ -194,25 +186,6 @@ $sliding-sidebars-loaded-class: "mathbook-loaded" !default;
                      + $sidebar-left-width
                      + 2*$content-margin - 1;
         @media screen and (max-width: $breakpoint) {
-            @content;
-        }
-    }
-
-    .sidebar-right-open & {
-        $breakpoint: $content-max-width
-                     + $sidebar-right-width
-                     + 2*$content-margin - 1;
-        @media screen and (max-width:$breakpoint) {
-            @content;
-        }
-    }
-
-    .sidebar-right-open.sidebar-left-open & {
-        $breakpoint: $content-max-width
-                     + $sidebar-left-width
-                     + $sidebar-right-width
-                     + 2*$content-margin - 1;
-        @media screen and (max-width: $breakpoint ) {
             @content;
         }
     }

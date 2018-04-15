@@ -5,24 +5,6 @@
 // This provides an overview of the layout and how the root level
 // elements of the page fit together.
 
-/*
-html, body {
-    margin:0;
-    padding:0;
-}
-
-body {
-    background: $ui-color-bg;
-    @include typography-base();
-
-    &.centered-container {
-        border:1px solid darken($ui-color-bg, 10%);
-        border-top:none;
-        border-bottom:none;
-    }
-}
-*/
-
 /**
  * Containers restrict the max-width of content within elements
  * whose backgrounds must stretch to the width of the viewport.
@@ -42,20 +24,6 @@ body {
     &.has-sidebar-left, .has-sidebar-left & {
         max-width: $content-outer-width + $ui-sidebar-left-width;
     }
-
-/*
-    &.has-sidebar-right, .has-sidebar-right & {
-        max-width:none;
-    }
-*/
-
-/*
-    &.layout-centered,
-    .layout-centered &,
-    .has-sidebar-left.has-sidebar-right & {
-        max-width: none;
-    }
-*/
 }
 
 /**
@@ -147,10 +115,10 @@ body {
     @include sliding-sidebars-compositing-layer();
 }
 
+/*
 #sidebar-right {
 
     & {
-        /* Hide sidebar by default */
         display:none;
 
         @include sliding-sidebars-sidebar(
@@ -163,16 +131,15 @@ body {
         @include sliding-sidebars-compositing-layer();
 
         top:0;
-        /* The right sidebar is not sticky, so we can use right:0;*/
         right:0;
     }
 
-    /* Display it only if it is enabled */
     .has-sidebar-right & {
         display:block;
     }
 
 }
+*/
 
 .sidebar-content {
     /* Extra links -- could go in either sidebar */
@@ -222,12 +189,6 @@ body {
     .layout-left & {
         margin: $ui-content-margin;
     }
-
-/*
-    .layout-centered & {
-        margin: $ui-content-margin auto;
-    }
-*/
 
     &, .layout-left & { /*, .layout-centered & { */
 
